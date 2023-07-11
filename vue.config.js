@@ -1,7 +1,7 @@
-module.exports = {
-  configureWebpack: {
-    output: {
-      crossOriginLoading: 'anonymous',
-    },
-  },
-};
+// module.exports = {
+//   configureWebpack: {
+//     output: {
+//       crossOriginLoading: 'anonymous',
+//     },
+//   },
+// };

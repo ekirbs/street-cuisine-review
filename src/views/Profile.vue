@@ -1,15 +1,17 @@
 <template>
   <div class="profile-container">
-    <Map />
+    <!-- <Map></Map> -->
+    <Streetfood></Streetfood>
   </div>
 </template>
 
 <script>
-import { Map } from '../components/homeComponents'
+import { Map, Streetfood } from '../components/homeComponents'
 export default {
   name: 'Profile',
   components: {
-    Map
+    Map,
+    Streetfood
   }
 }
 </script>

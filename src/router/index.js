@@ -4,6 +4,7 @@ import { Home, Feed, Posts, SinglePost, EditPost, Profile, Register, SignIn } fr
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
+  // history: createWebHistory('/'),
   routes: [
     {
       path: '/',
