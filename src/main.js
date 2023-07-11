@@ -9,9 +9,9 @@ import VueGoogleMaps from '@fawmi/vue-google-maps'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { faEnvelope, faCheck, faLock } from '@fortawesome/free-solid-svg-icons'
+import { faEnvelope, faCheck, faLock, faSpinner } from '@fortawesome/free-solid-svg-icons'
 
-library.add(faEnvelope, faCheck, faLock)
+library.add(faEnvelope, faCheck, faLock, faSpinner)
 
 const app = createApp(App)
 
