@@ -5,9 +5,7 @@
 </template>
 
 <script>
-  export default {
-    
-  }
+export default {};
 </script>
 
 <style scoped>
@@ -19,5 +17,4 @@
   justify-content: center;
   align-items: center;
 }
-
 </style>

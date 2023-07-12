@@ -3,13 +3,13 @@
     <RouterLink to="/">
       <h1>Boston Street Cuisine</h1>
     </RouterLink>
-    <img src="../../assets/images/logo.png" class="logoImg" alt="the logo">
+    <img src="../../assets/images/logo.png" class="logoImg" alt="the logo" />
     <p>Your one-stop shop for fine dining on the streets.</p>
   </div>
 </template>
 
 <script setup>
-  import { RouterLink } from 'vue-router'
+import { RouterLink } from "vue-router";
 </script>
 
 <style scoped>
@@ -27,5 +27,4 @@
   height: auto;
   margin: 0 25px;
 }
-
 </style>

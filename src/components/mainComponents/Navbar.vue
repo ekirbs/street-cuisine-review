@@ -129,7 +129,7 @@ watch(
   () => store.state.isLoggedIn,
   (newVal) => {
     console.log("log status:", newVal);
-  }
+  },
 );
 </script>
 

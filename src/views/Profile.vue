@@ -6,14 +6,14 @@
 </template>
 
 <script>
-import { Map, Streetfood } from '../components/homeComponents'
+import { Map, Streetfood } from "../components/homeComponents";
 export default {
-  name: 'Profile',
+  name: "Profile",
   components: {
     Map,
-    Streetfood
-  }
-}
+    Streetfood,
+  },
+};
 </script>
 
 <style scoped>

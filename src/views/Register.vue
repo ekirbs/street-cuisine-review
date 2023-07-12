@@ -28,15 +28,16 @@
 
     <button @click="register">Register</button>
     <button @click="signInWithGoogle">Sign In With Google</button>
-    
   </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
 import {
-  getAuth, createUserWithEmailAndPassword,
-  GoogleAuthProvider, signInWithPopup
+  getAuth,
+  createUserWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
 } from "firebase/auth";
 import { useRouter } from "vue-router";
 

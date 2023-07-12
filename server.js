@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require("path");
 const routes = require('./controllers');
 // const cors = require("cors");
 
@@ -26,12 +27,12 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static('dist'));
+app.use(express.static(path.join(__dirname, 'dist')));
 
 app.use(routes);
-app.get('*', (req, res) =>
-res.render('404')
-);
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
 
 app.use((err, req, res, next) => {
   console.error(err);

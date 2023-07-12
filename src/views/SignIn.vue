@@ -27,13 +27,20 @@
     <p v-if="errMsg">{{ errMsg }}</p>
 
     <button class="button" @click="signIn">Sign In</button>
-    <button class="button" @click="signInWithGoogle">Sign In With Google</button>
+    <button class="button" @click="signInWithGoogle">
+      Sign In With Google
+    </button>
   </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
-import { GoogleAuthProvider, getAuth, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import {
+  GoogleAuthProvider,
+  getAuth,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+} from "firebase/auth";
 import { useRouter } from "vue-router";
 
 const email = ref("");
@@ -76,9 +83,7 @@ const signInWithGoogle = () => {
       console.log(result.user);
       router.push("/profile");
     })
-    .catch((error) => {
-
-    });
+    .catch((error) => {});
 };
 </script>
 

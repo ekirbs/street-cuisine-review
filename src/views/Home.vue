@@ -9,19 +9,18 @@
 </template>
 
 <script>
-import { Weather } from '../components/homeComponents'
+import { Weather } from "../components/homeComponents";
 
 export default {
-  name: 'Home',
+  name: "Home",
   components: {
-    Weather
-  }
-}
-
+    Weather,
+  },
+};
 </script>
 
 <style scoped>
-@import 'bulma/css/bulma.min.css';
+@import "bulma/css/bulma.min.css";
 
 .home-container {
   background-color: aquamarine;
@@ -36,7 +35,7 @@ export default {
   align-items: center;
 }
 
-  /* @media (min-width: 1024px) {
+/* @media (min-width: 1024px) {
     .home {
       min-height: 100vh;
       display: flex;

@@ -5,34 +5,35 @@
   </div>
   <div v-else>
     <div class="streetfood-container">
-      <h1>Name:</h1>
+      <h1>Name: {{ vendorData. }}</h1>
     </div>
   </div>
 </template>
 
 <script>
 import axios from "axios";
-import { API_BASE_URL } from '../../../config';
+import { API_BASE_URL } from "../../../config";
 
 export default {
   name: "Streetfood",
   data() {
     return {
-      isLoading: true
+      vendorData: null,
+      isLoading: true,
     };
   },
   mounted() {
-    this.fetchStreetfoodData();
+    this.fetchVendorData();
   },
   methods: {
-    fetchStreetfoodData() {
+    fetchVendorData() {
       const streetfoodApiUrl = `${API_BASE_URL}/streetfood`;
 
       axios
         .get(streetfoodApiUrl)
         .then((response) => {
-          this.streetfoodData = response.data;
-          console.log(this.streetfoodData);
+          this.vendorData = response.data;
+          console.log(this.vendorData);
 
           this.isLoading = false;
         })

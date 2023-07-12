@@ -4,10 +4,7 @@
     <form @submit.prevent="editPost">
       <div class="edit-post-form">
         <div class="field">
-          <label
-          class="label has-text-centered"
-            for="newTitle"
-          >
+          <label class="label has-text-centered" for="newTitle">
             New Title:
           </label>
           <div class="control">
@@ -17,15 +14,12 @@
               type="text"
               placeholder="new title of post"
               name="newTitle"
-            >
+            />
           </div>
         </div>
 
         <div class="field">
-          <label
-            class="label has-text-centered"
-            for="newContent"
-          >
+          <label class="label has-text-centered" for="newContent">
             New Content:
           </label>
           <div class="control">
@@ -63,13 +57,11 @@
 </template>
 
 <script>
-  export default {
-    
-  }
+export default {};
 </script>
 
 <style scoped>
-@import 'bulma/css/bulma.min.css';
+@import "bulma/css/bulma.min.css";
 
 .edit-post-container {
   width: 85vw;
@@ -87,5 +79,4 @@
 .edit-post-form {
   width: 60vw;
 }
-
 </style>

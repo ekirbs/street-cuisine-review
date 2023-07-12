@@ -9,8 +9,11 @@
         City: {{ weatherData.city.name }}
       </h2>
       <p v-if="formattedDate">Date: {{ formattedDate }}</p>
-      <div v-if="weatherData && weatherData.list && weatherData.list.length > 0">
-        <img :src="weatherIconUrl" alt="Weather Icon" />
+      <div
+        v-if="weatherData && weatherData.list && weatherData.list.length > 0"
+        class="weather-info-section"
+      >
+        <img :src="weatherIconUrl" alt="Weather Icon" class="weather-icon" />
         <p>Temperature: {{ weatherData.list[0].main.temp }}</p>
         <p>Humidity: {{ weatherData.list[0].main.humidity }}</p>
         <p>Wind Speed: {{ weatherData.list[0].wind.speed }}</p>
@@ -76,5 +79,17 @@ export default {
   padding: 15px;
   border: 2px solid black;
   border-radius: 10px;
-};
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.weather-info-section {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 </style>

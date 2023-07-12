@@ -1,16 +1,16 @@
-import { createStore } from 'vuex'
+import { createStore } from "vuex";
 
 const store = createStore({
   state() {
     return {
-      isLoggedIn: false
-    }
+      isLoggedIn: false,
+    };
   },
   mutations: {
     setLoggedIn(state, value) {
-      state.isLoggedIn = value
-    }
-  }
-})
+      state.isLoggedIn = value;
+    },
+  },
+});
 
-export default store
+export default store;

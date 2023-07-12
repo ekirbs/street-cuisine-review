@@ -4,9 +4,7 @@
   </div>
 </template>
 
-<script>
-
-</script>
+<script></script>
 
 <style scoped>
 .feed-container {
@@ -20,5 +18,4 @@
   background-color: ghostwhite;
   border-radius: 10px;
 }
-
 </style>

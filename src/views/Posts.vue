@@ -1,9 +1,7 @@
 <template>
   <div class="post-container">
     <div class="title has-text-centered">
-      <h2>
-        Posts
-      </h2>
+      <h2>Posts</h2>
     </div>
     <h3 class="has-text-centered">working on the post component</h3>
 
@@ -11,12 +9,7 @@
       <div class="post-form">
         <!-- <main> -->
         <div class="field">
-          <label
-            class="label has-text-centered"
-            for="title"
-          >
-            Title:
-          </label>
+          <label class="label has-text-centered" for="title"> Title: </label>
           <div class="control">
             <input
               v-model="postTitle"
@@ -29,10 +22,7 @@
         </div>
 
         <div class="field">
-          <label
-            class="label has-text-centered"
-            for="content"
-          >
+          <label class="label has-text-centered" for="content">
             Content:
           </label>
           <div class="control">
@@ -96,7 +86,7 @@
         class="card mb-5"
         :class="{ 'has-background-success-light': post.liked }"
       >
-      <!-- <router-link :to="{ name: 'singlePost', params: { postId: post.id }, props: { post: post } }"> -->
+        <!-- <router-link :to="{ name: 'singlePost', params: { postId: post.id }, props: { post: post } }"> -->
         <div class="card-content">
           <div class="content">
             <div class="columns is-mobile is-vcentered">
@@ -104,11 +94,14 @@
                 <div class="title" :class="{ 'has-text-success ': post.liked }">
                   {{ post.title }}
                 </div>
-                <div class="content" :class="{ 'has-text-success': post.liked }">
+                <div
+                  class="content"
+                  :class="{ 'has-text-success': post.liked }"
+                >
                   {{ post.content }}
                 </div>
               </div>
-  
+
               <div class="column is-5 has-text-right">
                 <button
                   @click="toggleLiked(post.id)"
@@ -117,10 +110,7 @@
                 >
                   &check;
                 </button>
-                <RouterLink
-                  to="/editPost"
-                  class="button is-light"
-                >
+                <RouterLink to="/editPost" class="button is-light">
                   &#9998;
                 </RouterLink>
                 <button
@@ -133,31 +123,41 @@
             </div>
           </div>
         </div>
-      <!-- </router-link> -->
+        <!-- </router-link> -->
       </div>
     </div>
     <div v-else>
       <p>there's nothing here</p>
     </div>
-
   </div>
 </template>
 
 <script setup>
 // import
-import { ref, onMounted } from 'vue'
+import { ref, onMounted } from "vue";
 import {
-  collection, query, where, onSnapshot,
-  addDoc, doc, deleteDoc, updateDoc,
-  orderBy, limit
-} from 'firebase/firestore'
-import { db } from '@/firebase'
+  collection,
+  query,
+  where,
+  onSnapshot,
+  addDoc,
+  doc,
+  deleteDoc,
+  updateDoc,
+  orderBy,
+  limit,
+} from "firebase/firestore";
+import { db } from "@/firebase";
 
-import { RouterLink } from 'vue-router'
+import { RouterLink } from "vue-router";
 
 // firebase refs
-const postsCollectionRef = collection(db, 'posts')
-const postsCollectionQuery = query(postsCollectionRef, orderBy('date', 'desc'), limit(10))
+const postsCollectionRef = collection(db, "posts");
+const postsCollectionQuery = query(
+  postsCollectionRef,
+  orderBy("date", "desc"),
+  limit(10),
+);
 
 // posts
 const posts = ref([
@@ -173,41 +173,41 @@ const posts = ref([
   //   content: 'I hate street food, but I love this site.',
   //   liked: true
   // }
-])
+]);
 
 // get posts
 onMounted(() => {
   // const q = query(postsCollectionRef, where('author', '===', ''));
   // const unsubscribe = onSnapshot(q, (querySnapshot) => {
   onSnapshot(postsCollectionQuery, (querySnapshot) => {
-    const fbPosts = []
+    const fbPosts = [];
     querySnapshot.forEach((doc) => {
       const post = {
         id: doc.id,
         title: doc.data().title,
         content: doc.data().content,
-        liked: doc.data().liked
-      }
-    fbPosts.push(post)
-    })
-    posts.value = fbPosts
-  })
-})
+        liked: doc.data().liked,
+      };
+      fbPosts.push(post);
+    });
+    posts.value = fbPosts;
+  });
+});
 
 // add post
-const postTitle = ref('')
-const postContent = ref('')
+const postTitle = ref("");
+const postContent = ref("");
 
 const addPost = () => {
   addDoc(postsCollectionRef, {
     title: postTitle.value,
     content: postContent.value,
     liked: false,
-    date: Date.now()
-  })
-  postTitle.value = ''
-  postContent.value = ''
-}
+    date: Date.now(),
+  });
+  postTitle.value = "";
+  postContent.value = "";
+};
 
 // // edit post
 // const editPost = id => {
@@ -215,18 +215,18 @@ const addPost = () => {
 // }
 
 // delete post
-const deletePost = id => {
-  deleteDoc(doc(postsCollectionRef, id))
-}
+const deletePost = (id) => {
+  deleteDoc(doc(postsCollectionRef, id));
+};
 
 // like post
-const toggleLiked = id => {
-  const index = posts.value.findIndex(post => post.id === id)
+const toggleLiked = (id) => {
+  const index = posts.value.findIndex((post) => post.id === id);
 
   updateDoc(doc(postsCollectionRef, id), {
-    liked: !posts.value[index].liked
+    liked: !posts.value[index].liked,
   });
-}
+};
 
 // add comment
 
@@ -235,8 +235,6 @@ const toggleLiked = id => {
 // delete comment
 
 // like comment
-
-;
 </script>
 
 <style scoped>
