@@ -1,7 +1,7 @@
 const router = require("express").Router();
 
-const streetfoodRoutes = require("./streetfoodRoutes");
+const apiRoutes = require("./api");
 
-router.use("/streetfood", streetfoodRoutes);
+router.use("/api", apiRoutes);
 
 module.exports = router;

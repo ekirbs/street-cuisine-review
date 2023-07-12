@@ -52,7 +52,7 @@ export default {
         .get(weatherApiURL)
         .then((response) => {
           this.weatherData = response.data;
-          console.log(this.weatherData);
+          console.log("weatherData: ", this.weatherData);
 
           const timeElapsed = Date.now();
           const today = new Date(timeElapsed);

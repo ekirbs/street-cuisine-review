@@ -18,7 +18,7 @@ export default {
 
 <style scoped>
 .profile-container {
-  height: 100vh;
+  min-height: 100vh;
   width: 80vw;
   background-color: blanchedalmond;
   border-radius: 10px;
