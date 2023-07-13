@@ -13,20 +13,29 @@
           <p>Your one-stop shop for fine dining on the streets.</p>
       </div>
 
-      <a
+      <!-- <a
         role="button"
         class="navbar-burger"
         aria-label="menu"
         aria-expanded="false"
-        data-target="navbarBasicExample"
+        data-target="navbarContainer"
       >
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
-      </a>
+      </a> -->
+      <div
+        class="navbar-burger"
+        @click="showNav = !showNav"
+        :class="{ 'is-active': showNav }"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </div>
 
-    <div id="navbarBasicExample" class="navbar-menu">
+    <div id="navbarContainer" class="navbar-menu" :class="{ 'is-active': showNav }">
       <div class="navbar-start" v-if="isLoggedIn">
         <RouterLink to="/" class="navbar-item"> Home </RouterLink>
 
@@ -92,6 +101,8 @@ const auth = getAuth();
 const store = useStore();
 const isLoggedIn = computed(() => store.state.isLoggedIn);
 
+const showNav = ref(false);
+
 const handleSignOut = () => {
   signOut(auth).then(() => {
     router.push("/");
@@ -133,7 +144,7 @@ watch(
 );
 </script>
 
-<style scoped>
+<style>
 @import "bulma/css/bulma.min.css";
 
 .navbar {

@@ -7,6 +7,7 @@
     <div class="streetfood-container">
       <div v-for="vendor in data" :key="vendor.name" class="vendor-card">
         <h1>Name: {{ vendor.name }}</h1>
+        <img :src="vendor.logo" alt="vendor logo">
         <p>Website: {{ vendor.website }}</p>
         <p>Phone #: {{ vendor.phone }}</p>
         <p>Description: {{ vendor.description }}</p>
@@ -47,6 +48,7 @@ export default {
 
           this.data = Object.values(vendorList).map((vendor) => ({
             name: vendor.name,
+            logo: vendor.images?.logo_small,
             website: vendor.url,
             phone: vendor.phone,
             description: vendor.description,
