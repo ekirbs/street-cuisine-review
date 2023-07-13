@@ -3,7 +3,6 @@
     <h2>this is the edit post page</h2>
 
     <div class="single-post card mb-5" v-if="post">
-      <!-- <div v-for="post in post" :key="post.id" class="single-post card mb-5"> -->
       <h3>Title: {{ post.title }}</h3>
       <p>Content: {{ post.content }}</p>
     </div>
@@ -83,12 +82,15 @@ import { doc, getDoc, updateDoc } from 'firebase/firestore';
 const route = useRoute();
 const router = useRouter();
 
+// refs
 const postId = ref(route.params.postId);
+const post = ref(null);
+const newPostTitle = ref('');
+const newPostContent = ref('');
+const termsAgreed = ref(false);
 
 // get post
-const post = ref(null);
-
-const fetchPost = async () => {
+onMounted(async () => {
   const postDocRef = doc(db, 'posts', postId.value);
   const postDocSnap = await getDoc(postDocRef);
 
@@ -98,6 +100,7 @@ const fetchPost = async () => {
       id: postId.value,
       title: postData.title,
       content: postData.content,
+      liked: postData.liked,
     };
     newPostTitle.value = post.value.title;
     newPostContent.value = post.value.content;
@@ -105,15 +108,9 @@ const fetchPost = async () => {
     console.error('Post not found');
     router.push('/posts');
   }
-};
-
-onMounted(fetchPost);
+});
 
 // edit post
-const newPostTitle = ref('');
-const newPostContent = ref('');
-const termsAgreed = ref(false);
-
 const editPost = async () => {
   const postDocRef = doc(db, 'posts', post.value.id);
 
@@ -140,7 +137,6 @@ const cancel = () => {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* align-items: center; */
 
   padding: 10px;
 }

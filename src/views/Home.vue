@@ -34,13 +34,4 @@ export default {
   justify-content: space-around;
   align-items: center;
 }
-
-/* @media (min-width: 1024px) {
-    .home {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-  } */
 </style>

@@ -150,8 +150,11 @@ const postsCollectionQuery = query(
   limit(10)
 );
 
-// posts
+// refs
 const posts = ref([]);
+const postTitle = ref('');
+const postContent = ref('');
+const termsAgreed = ref('');
 
 // get posts
 onMounted(() => {
@@ -173,10 +176,6 @@ onMounted(() => {
 });
 
 // add post
-const postTitle = ref('');
-const postContent = ref('');
-const termsAgreed = ref('');
-
 const addPost = () => {
   addDoc(postsCollectionRef, {
     title: postTitle.value,
@@ -196,11 +195,6 @@ const cancel = () => {
   postContent.value = '';
   termsAgreed.value = false;
 };
-
-// // edit post
-// const editPost = id => {
-//   console.log('edit post:', id)
-// }
 
 // delete post
 const deletePost = (id) => {
