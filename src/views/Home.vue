@@ -2,7 +2,7 @@
   <div class="home-container">
     <h1>Street Cuisine Review</h1>
     <main>
-      <p>content...</p>
+      <p>Your one-stop shop to fine dining on the streets.</p>
     </main>
     <Weather></Weather>
   </div>

@@ -9,6 +9,7 @@ import {
   Profile,
   Register,
   SignIn,
+  Test
 } from "../views";
 
 const router = createRouter({
@@ -37,7 +38,7 @@ const router = createRouter({
       },
     },
     {
-      path: "/editPost",
+      path: "/edit-post/:postId",
       name: "editPost",
       component: EditPost,
       meta: {
@@ -57,6 +58,15 @@ const router = createRouter({
       path: "/profile",
       name: "profile",
       component: Profile,
+      meta: {
+        requiresAuth: true,
+      },
+      props: true,
+    },
+    {
+      path: "/test",
+      name: "test",
+      component: Test,
       meta: {
         requiresAuth: true,
       },

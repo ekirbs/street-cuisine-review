@@ -5,7 +5,7 @@
     </div>
     <h3 class="has-text-centered">working on the post component</h3>
 
-    <form @submit.prevent="addPost">
+    <form>
       <div class="post-form">
         <!-- <main> -->
         <div class="field">
@@ -35,45 +35,34 @@
           </div>
         </div>
 
-        <!-- <div class="field">
-            <div class="control">
-              <label class="checkbox">
-                <input type="checkbox" />
-                I agree to the <a href="#">terms and conditions</a>
-              </label>
-            </div>
-          </div> -->
-
-        <!-- <div class="field">
-            <div class="control">
-              <label class="radio">
-                <input type="radio" name="question" />
-                Yes
-              </label>
-              <label class="radio">
-                <input type="radio" name="question" />
-                No
-              </label>
-            </div>
-          </div> -->
+        <div class="field">
+          <div class="control">
+            <label class="checkbox">
+              <input v-model="termsAgreed" type="checkbox" />
+              I agree to the <a href="#">terms and conditions</a>
+            </label>
+          </div>
+        </div>
 
         <div class="field is-grouped is-grouped-centered mb-5">
           <div class="control">
             <button
-              :disabled="!postTitle || !postContent"
+              :disabled="!postTitle || !postContent || !termsAgreed"
               class="button is-link"
+              @click.prevent="addPost"
             >
               Post
             </button>
           </div>
-          <!-- <div class="control">
-              <button
+          <div class="control">
+            <button
               :disabled="!postTitle && !postContent"
-                class="button is-link is-light"
-              >
-                Cancel
-              </button>
-            </div> -->
+              class="button is-link is-light"
+              @click="cancel"
+            >
+              Cancel
+            </button>
+          </div>
         </div>
         <!-- </main> -->
       </div>
@@ -86,7 +75,6 @@
         class="card mb-5"
         :class="{ 'has-background-success-light': post.liked }"
       >
-        <!-- <router-link :to="{ name: 'singlePost', params: { postId: post.id }, props: { post: post } }"> -->
         <div class="card-content">
           <div class="content">
             <div class="columns is-mobile is-vcentered">
@@ -110,7 +98,13 @@
                 >
                   &check;
                 </button>
-                <RouterLink to="/editPost" class="button is-light">
+                <RouterLink
+                  :to="{
+                    name: 'editPost',
+                    params: { postId: post.id },
+                  }"
+                  class="button is-light"
+                >
                   &#9998;
                 </RouterLink>
                 <button
@@ -123,7 +117,6 @@
             </div>
           </div>
         </div>
-        <!-- </router-link> -->
       </div>
     </div>
     <div v-else>
@@ -133,12 +126,11 @@
 </template>
 
 <script setup>
-// import
-import { ref, onMounted } from "vue";
+// imports
+import { ref, onMounted } from 'vue';
 import {
   collection,
   query,
-  where,
   onSnapshot,
   addDoc,
   doc,
@@ -146,34 +138,20 @@ import {
   updateDoc,
   orderBy,
   limit,
-} from "firebase/firestore";
-import { db } from "@/firebase";
-
-import { RouterLink } from "vue-router";
+} from 'firebase/firestore';
+import { db } from '@/firebase';
+import { RouterLink } from 'vue-router';
 
 // firebase refs
-const postsCollectionRef = collection(db, "posts");
+const postsCollectionRef = collection(db, 'posts');
 const postsCollectionQuery = query(
   postsCollectionRef,
-  orderBy("date", "desc"),
-  limit(10),
+  orderBy('date', 'desc'),
+  limit(10)
 );
 
 // posts
-const posts = ref([
-  // {
-  //   id: 'id1',
-  //   title: 'Khabib\'s Kabobs',
-  //   content: 'Khabib really knows how to cook!',
-  //   liked: false
-  // },
-  // {
-  //   id: 'id2',
-  //   title: 'blech',
-  //   content: 'I hate street food, but I love this site.',
-  //   liked: true
-  // }
-]);
+const posts = ref([]);
 
 // get posts
 onMounted(() => {
@@ -195,18 +173,28 @@ onMounted(() => {
 });
 
 // add post
-const postTitle = ref("");
-const postContent = ref("");
+const postTitle = ref('');
+const postContent = ref('');
+const termsAgreed = ref('');
 
 const addPost = () => {
   addDoc(postsCollectionRef, {
     title: postTitle.value,
     content: postContent.value,
+    agreed: termsAgreed.value,
     liked: false,
     date: Date.now(),
   });
-  postTitle.value = "";
-  postContent.value = "";
+  postTitle.value = '';
+  postContent.value = '';
+  termsAgreed.value = false;
+};
+
+// cancel post
+const cancel = () => {
+  postTitle.value = '';
+  postContent.value = '';
+  termsAgreed.value = false;
 };
 
 // // edit post
@@ -237,8 +225,8 @@ const toggleLiked = (id) => {
 // like comment
 </script>
 
-<style scoped>
-@import "bulma/css/bulma.min.css";
+<style>
+@import 'bulma/css/bulma.min.css';
 
 .post-container {
   max-width: 75vw;
@@ -249,13 +237,4 @@ const toggleLiked = (id) => {
   background-color: bisque;
   border-radius: 10px;
 }
-
-/* @media (min-width: 1024px) {
-  .post-form {
-    min-height: 60vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-} */
 </style>

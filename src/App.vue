@@ -13,7 +13,7 @@ import { RouterView } from "vue-router";
 </template>
 
 <script>
-import { Header, Footer, Navbar } from "./components/mainComponents";
+import { Header, Footer, Navbar } from "./components/baseComponents";
 
 export default {
   name: "App",

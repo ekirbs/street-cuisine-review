@@ -10,7 +10,7 @@
             alt="Street Cuisine Review logo."
           />
         </RouterLink>
-        <p>Your one-stop shop for fine dining on the streets.</p>
+          <p>Your one-stop shop for fine dining on the streets.</p>
       </div>
 
       <a
@@ -41,7 +41,7 @@
             <a class="navbar-item"> About </a>
             <a class="navbar-item"> Contact </a>
             <hr class="navbar-divider" />
-            <a class="navbar-item"> Report an issue </a>
+            <RouterLink to="/test" class="navbar-item">Test</RouterLink>
           </div>
         </div>
       </div>

@@ -253,5 +253,7 @@ const mapStyle = [
 .map {
   height: 500px;
   width: 500px;
+
+  margin: 10px;
 }
 </style>
