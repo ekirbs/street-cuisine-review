@@ -22,6 +22,17 @@
         <p>Sorry, there is no weather data for this location...</p>
       </div>
     </div>
+
+    <div class="forecast-container">
+      <h3>5-Day Forecast</h3>
+      <div v-for="(day, index) in weatherData.list.slice(1, 6)" :key="index" class="forecast-day">
+        <h4>{{ getFormattedDate(index + 1) }}</h4>
+        <img :src="getWeatherIconUrl(day.weather[0].icon)" alt="Weather Icon" class="forecast-icon" />
+        <p>Temperature: {{ day.main.temp }}</p>
+        <p>Humidity: {{ day.main.humidity }}</p>
+        <p>Wind Speed: {{ day.wind.speed }}</p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -40,6 +51,14 @@ export default {
   },
   mounted() {
     this.fetchWeatherData();
+  },
+  computed: {
+    forecastDays() {
+      if (this.weatherData && this.weatherData.list) {
+        return this.weatherData.list.slice(1, 6);
+      }
+      return [];
+    },
   },
   methods: {
     fetchWeatherData() {
@@ -68,6 +87,14 @@ export default {
           this.isLoading = false;
         });
     },
+    getFormattedDate(index) {
+      const today = new Date();
+      const forecastDate = new Date(today.getTime() + index * 24 * 60 * 60 * 1000);
+      return forecastDate.toLocaleDateString();
+    },
+    getWeatherIconUrl(iconCode) {
+      return `http://openweathermap.org/img/w/${iconCode}.png`;
+    },
   },
 };
 </script>
@@ -89,6 +116,22 @@ export default {
 
 .weather-info-section {
   display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.forecast-container {
+  display: flex;
+}
+
+.forecast-day {
+  border: 2px solid black;
+  border-radius: 10px;
+  margin: 5px;
+  padding: 5px;
+
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
