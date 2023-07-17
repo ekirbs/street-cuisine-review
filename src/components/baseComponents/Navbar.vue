@@ -45,6 +45,7 @@
           <div class="navbar-dropdown">
             <RouterLink to="/posts" class="navbar-item"> Posts </RouterLink>
             <RouterLink to="/feed" class="navbar-item"> Feed </RouterLink>
+            <RouterLink to="/vendors" class="navbar-item"> Vendors </RouterLink>
             <a class="navbar-item"> About </a>
             <a class="navbar-item"> Contact </a>
             <hr class="navbar-divider" />

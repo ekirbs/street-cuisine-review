@@ -25,7 +25,7 @@
 
     <div class="forecast-container">
       <h3>5-Day Forecast</h3>
-      <div v-for="(day, index) in weatherData.list.slice(1, 6)" :key="index" class="forecast-day">
+      <div v-for="(day, index) in weatherData.list.slice(1, 6)" :key="index" class="forecast-day card">
         <h4>{{ getFormattedDate(index + 1) }}</h4>
         <img :src="getWeatherIconUrl(day.weather[0].icon)" alt="Weather Icon" class="forecast-icon" />
         <p>Temperature: {{ day.main.temp }}</p>
@@ -107,6 +107,7 @@ export default {
   border: 2px solid black;
   border-radius: 10px;
   margin: 10px;
+  background-color: azure;
 
   display: flex;
   flex-direction: column;
@@ -126,10 +127,12 @@ export default {
 }
 
 .forecast-day {
-  border: 2px solid black;
+  border: 1px solid black;
   border-radius: 10px;
   margin: 5px;
   padding: 5px;
+  background-color: azure;
+  box-shadow: 1px 1px 2px black;;
 
   display: flex;
   flex-direction: column;

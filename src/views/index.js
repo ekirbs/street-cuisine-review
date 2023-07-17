@@ -6,6 +6,8 @@ import EditPost from "./EditPost.vue";
 import Profile from "./Profile.vue";
 import Register from "./Register.vue";
 import SignIn from "./SignIn.vue";
+import SingleVendor from "./SingleVendor.vue";
 import Test from "./Test.vue";
+import Vendors from "./Vendors.vue";
 
-export { Home, Feed, Posts, SinglePost, EditPost, Profile, Register, SignIn, Test };
+export { Home, Feed, Posts, SinglePost, EditPost, Profile, Register, SignIn, SingleVendor, Test, Vendors };

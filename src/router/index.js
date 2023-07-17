@@ -9,7 +9,9 @@ import {
   Profile,
   Register,
   SignIn,
-  Test
+  Test,
+  Vendors,
+  SingleVendor
 } from "../views";
 
 const router = createRouter({
@@ -82,6 +84,23 @@ const router = createRouter({
       path: "/signIn",
       name: "signIn",
       component: SignIn,
+    },
+    {
+      path: "/vendors",
+      name: "vendors",
+      component: Vendors,
+      meta: {
+        requiresAuth: true,
+      },
+    },
+    {
+      path: "/vendor/:identifier",
+      name: "single-vendor",
+      component: SingleVendor,
+      meta: {
+        requiresAuth: true,
+      },
+      props: true
     },
   ],
 });

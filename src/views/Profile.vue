@@ -1,7 +1,8 @@
 <template>
   <div class="profile-container">
     <!-- <Map></Map> -->
-    <Streetfood></Streetfood>
+    <!-- <Streetfood></Streetfood> -->
+    <p>this is back to being the profile page</p>
   </div>
 </template>
 
