@@ -1,8 +1,9 @@
 <template>
   <div class="home-container">
     <h1>Street Cuisine Review</h1>
-    <main>
+    <main class="home-main">
       <p>Your one-stop shop to fine dining on the streets.</p>
+      <h1 class="clock-time">Current Time: {{  currentTime }}</h1>
     </main>
     <Weather></Weather>
   </div>
@@ -15,6 +16,28 @@ export default {
   name: "Home",
   components: {
     Weather,
+  },
+  data() {
+    return {
+      currentTime: '',
+      intervalId: null
+    }
+  },
+  methods: {
+    setCurrentTime() {
+      const date = new Date();
+      const formattedTime = date.toLocaleTimeString('en-US');
+      this.currentTime = formattedTime;
+    }
+  },
+  created() {
+    this.setCurrentTime();
+    this.intervalId = setInterval(() => {
+      this.setCurrentTime();
+    }, 1000);
+  },
+  beforeDestroy() {
+    clearInterval(this.intervalId);
   },
 };
 </script>
@@ -32,6 +55,13 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  align-items: center;
+}
+
+.home-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
 }
 </style>
