@@ -1,17 +1,15 @@
 <template>
   <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-      <div class="brand-container">
-        <RouterLink to="/" class="navbar-item">
-          <h1>Street Cuisine Review</h1>
-          <img
-            src="../../assets/images/logo.png"
-            class="logo-img"
-            alt="Street Cuisine Review logo."
-          />
-        </RouterLink>
-          <p>Your one-stop shop for fine dining on the streets.</p>
-      </div>
+      <RouterLink to="/" class="navbar-item brand-container">
+        <h1>Street Cuisine Review</h1>
+        <img
+          src="../../assets/images/logo.png"
+          class="logo-img"
+          alt="Street Cuisine Review logo."
+        />
+        <p>Your one-stop shop for fine dining on the streets.</p>
+      </RouterLink>
 
       <!-- <a
         role="button"
