@@ -78,7 +78,16 @@ const fetchVendorData = () => {
   border-radius: 10px;
   border: 2px solid black;
   box-shadow: 1px 1px 2px black;
+  margin: 10px auto;
+  padding: 15px;
   
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.vendor-card {
   display: flex;
   flex-direction: column;
   justify-content: center;
