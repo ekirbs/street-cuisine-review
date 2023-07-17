@@ -7,7 +7,12 @@
     <div v-else>
       <div class="vendor-card" v-if="vendor">
         <h1>Name: {{ vendor.name }}</h1>
-        <img :src="vendor.logo" alt="vendor logo">
+        <img
+          v-if="vendor.logo"
+          :src="vendor.logo"
+          alt="vendor logo"
+        />
+        <font-awesome-icon :icon="['fas', 'truck']" v-else class="truck-icon"/>
         <p>Website: {{ vendor.website }}</p>
         <p>Phone #: {{ vendor.phone }}</p>
         <p>Description: {{ vendor.description }}</p>

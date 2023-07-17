@@ -108,6 +108,7 @@ export default {
   border-radius: 10px;
   margin: 10px;
   background-color: azure;
+  box-shadow: 1px 1px 2px black;
 
   display: flex;
   flex-direction: column;

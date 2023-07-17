@@ -2,22 +2,27 @@
   <div class="footer-container">
     <span class="icon is-left">
       <a href="https://github.com/ekirbs" target="_blank" rel="noreferrer" class="footer-link">
-        <font-awesome-icon :icon="['fab', 'github']" />
+        <font-awesome-icon :icon="['fab', 'github']" class="footer-icon" />
         <span className="footer-text">GitHub</span>
       </a>
     </span>
     <span class="icon is-left">
       <a href="https://www.linkedin.com/in/eric-kirberger/" target="_blank" rel="noreferrer" class="footer-link">
-        <font-awesome-icon :icon="['fab', 'linkedin']" />
+        <font-awesome-icon :icon="['fab', 'linkedin']" class="footer-icon" />
         <span className="footer-text">LinkedIn</span>
       </a>
     </span>
     <span class="icon is-left">
       <a href="https://www.instagram.com/clearlyimarobot83/" target="_blank" rel="noreferrer" class="footer-link">
-        <font-awesome-icon :icon="['fab', 'instagram']" />
+        <font-awesome-icon :icon="['fab', 'instagram']" class="footer-icon" />
         <span className="footer-text">Instagram</span>
       </a>
     </span>
+    <div class="links">
+      <a href="#">Terms and Conditions</a>
+      <a href="#">README</a>
+      <a href="#">Donate</a>
+    </div>
   </div>
 </template>
 
@@ -29,12 +34,25 @@ export default {};
 @import "bulma/css/bulma.min.css";
 
 .footer-container {
-  min-height: 10vh;
+  min-height: 12vh;
   background-color: burlywood;
 
   display: flex;
   /* flex-direction: column; */
   justify-content: space-around;
   align-items: center;
+}
+
+.footer-icon {
+  height: 50px;
+  width: 50px;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-left: 1px solid black;
+  padding: 5px;
 }
 </style>

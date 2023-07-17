@@ -51,6 +51,7 @@ export default {
   height: 100vh;
   border-radius: 10px;
   margin: 10px auto;
+  padding: 15px;
 
   display: flex;
   flex-direction: column;

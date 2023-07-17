@@ -49,10 +49,20 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    background-color: thistle;
+    min-height: 8vh;
+    width: 50vw;
+    margin: 5px auto;
+    border: 2px solid black;
+    border-radius: 10px;
+    box-shadow: 1px 1px 2px black;
   }
 
   .button {
     margin: 5px;
     width: 125px;
+    border: 2px solid black;
+    box-shadow: 1px 1px 2px black;
   }
 </style>
