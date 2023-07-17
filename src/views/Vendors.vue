@@ -8,9 +8,16 @@
       <div v-for="vendor in data" :key="vendor.name" class="vendor-card">
         <RouterLink
           :to="{ name: 'single-vendor', params: { identifier: vendor.identifier } }"
+          class="vendor"
         >
           <h1>Name: {{ vendor.name }}</h1>
-          <img :src="vendor.logo" alt="vendor logo">
+          <img
+            v-if="vendor.logo"
+            :src="vendor.logo"
+            alt="vendor logo"
+          />
+          <font-awesome-icon :icon="['fas', 'truck']" v-else class="truck-icon"/>
+
           <p>Website: {{ vendor.website }}</p>
           <p>Phone #: {{ vendor.phone }}</p>
           <p>Description: {{ vendor.description }}</p>
@@ -98,5 +105,17 @@ export default {
   width: 75vw;
 
   background-color: antiquewhite;
+}
+
+.vendor {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.truck-icon {
+  height: 75px;
+  width: 75px;
 }
 </style>
