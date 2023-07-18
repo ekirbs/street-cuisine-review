@@ -36,6 +36,7 @@ export default {};
 .footer-container {
   min-height: 12vh;
   background-color: burlywood;
+  padding: 10px;
 
   display: flex;
   /* flex-direction: column; */

@@ -79,7 +79,10 @@
           <div class="content">
             <div class="columns is-mobile is-vcentered">
               <div class="column">
-                <div class="title" :class="{ 'has-text-success ': post.liked }">
+                <div
+                  class="title"
+                  :class="{ 'has-text-success ': post.liked }"
+                >
                   {{ post.title }}
                 </div>
                 <div
@@ -87,6 +90,12 @@
                   :class="{ 'has-text-success': post.liked }"
                 >
                   {{ post.content }}
+                </div>
+                <div
+                  class="creator"
+                  :class="{ 'has-text-success': post.liked }"
+                >
+                  Author: {{ post.creatorDisplayName }}
                 </div>
               </div>
 
@@ -128,6 +137,7 @@
 <script setup>
 // imports
 import { ref, onMounted } from 'vue';
+import { getAuth } from 'firebase/auth';
 import {
   collection,
   query,
@@ -168,6 +178,7 @@ onMounted(() => {
         title: doc.data().title,
         content: doc.data().content,
         liked: doc.data().liked,
+        creatorDisplayName: doc.data().creatorDisplayName,
       };
       fbPosts.push(post);
     });
@@ -177,16 +188,22 @@ onMounted(() => {
 
 // add post
 const addPost = () => {
-  addDoc(postsCollectionRef, {
-    title: postTitle.value,
-    content: postContent.value,
-    agreed: termsAgreed.value,
-    liked: false,
-    date: Date.now(),
-  });
-  postTitle.value = '';
-  postContent.value = '';
-  termsAgreed.value = false;
+  const currentUser = getAuth().currentUser;
+  console.log("current user", currentUser);
+  if (currentUser) {
+    addDoc(postsCollectionRef, {
+      title: postTitle.value,
+      content: postContent.value,
+      agreed: termsAgreed.value,
+      liked: false,
+      date: Date.now(),
+      creatorDisplayName: currentUser.displayName,
+      creatorUid: currentUser.uid,
+    });
+    postTitle.value = '';
+    postContent.value = '';
+    termsAgreed.value = false;
+  }
 };
 
 // cancel post

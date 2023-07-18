@@ -127,6 +127,8 @@ const cancel = () => {
   newPostTitle.value = '';
   newPostContent.value = '';
   termsAgreed.value = false;
+
+  router.push('/posts');
 };
 </script>
 
