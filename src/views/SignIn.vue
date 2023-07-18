@@ -50,7 +50,9 @@ const router = useRouter();
 
 const signIn = () => {
   const trimmedEmail = email.value.trim();
-  signInWithEmailAndPassword(getAuth(), trimmedEmail, password.value)
+  const trimmedPassword = password.value.trim();
+
+  signInWithEmailAndPassword(getAuth(), trimmedEmail, trimmedPassword)
     .then((data) => {
       console.log("Successfully signed in!");
       // console.log(auth.currentUser);
