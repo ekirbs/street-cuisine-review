@@ -7,6 +7,9 @@
     </button>
     <p>Email: {{ userData.email }}</p>
     <p>Registered On: {{ formattedRegistrationDate }}</p>
+    
+    <UserPosts />
+
     <div v-if="showModal" class="modal is-active">
       <div class="modal-background" @click="showModal = false"></div>
       <div class="modal-content">
@@ -47,6 +50,8 @@
 </template>
 
 <script setup>
+import { UserPosts } from '@/components/profileComponents';
+
 import { onMounted, ref, reactive, computed } from 'vue';
 import { getAuth, onAuthStateChanged, updateProfile } from 'firebase/auth';
 

@@ -35,6 +35,7 @@
 
     <div id="navbarContainer" class="navbar-menu" :class="{ 'is-active': showNav }">
       <div class="navbar-start" v-if="isLoggedIn">
+        <!-- <RouterLink @click.native="closeDropdown" to="/" class="navbar-item">Home</RouterLink> -->
         <RouterLink to="/" class="navbar-item"> Home </RouterLink>
 
         <RouterLink to="/profile" class="navbar-item"> Profile </RouterLink>
