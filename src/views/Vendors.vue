@@ -1,28 +1,36 @@
 <template>
-  <div v-if="isLoading">
-    <font-awesome-icon :icon="['fas', 'spinner']" spin />
-    <p>Loading...</p>
-  </div>
-  <div v-else>
-    <div class="vendors-container">
-      <div v-for="vendor in data" :key="vendor.name" class="vendor-card">
-        <RouterLink
-          :to="{ name: 'single-vendor', params: { identifier: vendor.identifier } }"
-          class="vendor"
-        >
-          <h1>Name: {{ vendor.name }}</h1>
-          <img
-            v-if="vendor.logo"
-            :src="vendor.logo"
-            alt="vendor logo"
-          />
-          <font-awesome-icon :icon="['fas', 'truck']" v-else class="truck-icon"/>
-
-          <p>Website: {{ vendor.website }}</p>
-          <p>Phone #: {{ vendor.phone }}</p>
-          <p>Description: {{ vendor.description }}</p>
-          <p>Identifier: {{ vendor.identifier }}</p>
-        </RouterLink>
+  <div class="vendors-container">
+    <div class="select">
+      <select v-model="currentUser.city" @change="fetchVendorData">
+      <!-- <select v-model="selectedCity" @change="fetchVendorData"> -->
+        <option v-for="city in cities" :key="city" :value="city">{{ city }}</option>
+      </select>
+    </div>
+    <div v-if="isLoading">
+      <font-awesome-icon :icon="['fas', 'spinner']" spin />
+      <p>Loading...</p>
+    </div>
+    <div v-else>
+      <div class="vendors-container">
+        <div v-for="vendor in data" :key="vendor.name" class="vendor-card">
+          <RouterLink
+            :to="{ name: 'single-vendor', params: { identifier: vendor.identifier } }"
+            class="vendor"
+          >
+            <h1>Name: {{ vendor.name }}</h1>
+            <img
+              v-if="vendor.logo"
+              :src="vendor.logo"
+              alt="vendor logo"
+            />
+            <font-awesome-icon :icon="['fas', 'truck']" v-else class="truck-icon"/>
+  
+            <p>Website: {{ vendor.website }}</p>
+            <p>Phone #: {{ vendor.phone }}</p>
+            <p>Description: {{ vendor.description }}</p>
+            <p>Identifier: {{ vendor.identifier }}</p>
+          </RouterLink>
+        </div>
       </div>
     </div>
   </div>
@@ -34,21 +42,29 @@ import { RouterLink } from 'vue-router';
 import { API_BASE_URL } from "../../config";
 
 export default {
-  name: "Streetfood",
+  name: "Vendors",
+  // name: "Streetfood",
   data() {
     return {
-      // vendorData: null,
       isLoading: true,
-      data: []
+      data: [],
+      // selectedCity: "boston",
+      cities: ["boston", "toronto"],
     };
   },
+  computed: {
+    currentUser() {
+      return this.$store.state.currentUser;
+    },
+  },
+
   mounted() {
     this.fetchVendorData();
   },
   methods: {
     fetchVendorData() {
-      const streetfoodApiUrl = `${API_BASE_URL}/streetfood`;
-      // const streetfoodApiUrl = `${API_BASE_URL}/api/streetfood`;
+      const streetfoodApiUrl = `${API_BASE_URL}/streetfood/${this.currentUser.city}`;
+      console.log("streetfoodApiUrl", streetfoodApiUrl);
 
       axios
         .get(streetfoodApiUrl)
