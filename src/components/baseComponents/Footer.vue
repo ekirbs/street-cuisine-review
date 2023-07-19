@@ -19,8 +19,8 @@
       </a>
     </span>
     <div class="links">
-      <a href="#">Terms and Conditions</a>
-      <a href="#">README</a>
+      <a href="../../../CODE_OF_CONDUCT.md">Terms and Conditions</a>
+      <a href="../../../README.md">README</a>
       <a href="#">Donate</a>
     </div>
   </div>
