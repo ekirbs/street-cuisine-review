@@ -6,6 +6,7 @@
       Change Display Name
     </button>
     <p>Email: {{ userData.email }}</p>
+    <p>Current City: {{ userData.city }}</p>
     <p>Registered On: {{ formattedRegistrationDate }}</p>
     
     <UserPosts />
@@ -72,10 +73,10 @@ let currentUser = null;
 onMounted(() => {
   const currentUser = getAuth().currentUser;
   if (currentUser) {
-    console.log('current user:', currentUser);
     userData.displayName = currentUser.displayName;
     userData.email = currentUser.email;
     userData.registrationDate = currentUser.metadata.createdAt;
+    console.log('current user:', currentUser);
   }
 });
 

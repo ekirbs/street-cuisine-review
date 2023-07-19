@@ -1,9 +1,11 @@
 <template>
   <div class="vendors-container">
     <div class="select">
+      <!-- <select v-model="currentUser.city" @change="onCityChange"> -->
       <select v-model="currentUser.city" @change="fetchVendorData">
-      <!-- <select v-model="selectedCity" @change="fetchVendorData"> -->
-        <option v-for="city in cities" :key="city" :value="city">{{ city }}</option>
+        <option v-for="city in cities" :key="city" :value="city">
+          {{ city }}
+        </option>
       </select>
     </div>
     <div v-if="isLoading">
@@ -13,94 +15,95 @@
     <div v-else>
       <div class="vendors-container">
         <div v-for="vendor in data" :key="vendor.name" class="vendor-card">
-          <RouterLink
-            :to="{ name: 'single-vendor', params: { identifier: vendor.identifier } }"
+          <router-link
+            :to="{
+              name: 'single-vendor',
+              params: { city: currentUser.city, identifier: vendor.identifier },
+            }"
             class="vendor"
           >
             <h1>Name: {{ vendor.name }}</h1>
-            <img
-              v-if="vendor.logo"
-              :src="vendor.logo"
-              alt="vendor logo"
+            <img v-if="vendor.logo" :src="vendor.logo" alt="vendor logo" />
+            <font-awesome-icon
+              :icon="['fas', 'truck']"
+              v-else
+              class="truck-icon"
             />
-            <font-awesome-icon :icon="['fas', 'truck']" v-else class="truck-icon"/>
-  
+
             <p>Website: {{ vendor.website }}</p>
             <p>Phone #: {{ vendor.phone }}</p>
             <p>Description: {{ vendor.description }}</p>
             <p>Identifier: {{ vendor.identifier }}</p>
-          </RouterLink>
+          </router-link>
         </div>
       </div>
     </div>
   </div>
 </template>
 
-<script>
-import axios from "axios";
+<script setup>
+import { onMounted, ref, watch } from 'vue';
+import axios from 'axios';
 import { RouterLink } from 'vue-router';
-import { API_BASE_URL } from "../../config";
+import { API_BASE_URL } from '../../config';
+import { useStore } from 'vuex';
 
-export default {
-  name: "Vendors",
-  // name: "Streetfood",
-  data() {
-    return {
-      isLoading: true,
-      data: [],
-      // selectedCity: "boston",
-      cities: ["boston", "toronto"],
-    };
-  },
-  computed: {
-    currentUser() {
-      return this.$store.state.currentUser;
-    },
-  },
+const isLoading = ref(true);
+const data = ref([]);
+const cities = ['boston', 'toronto'];
 
-  mounted() {
-    this.fetchVendorData();
-  },
-  methods: {
-    fetchVendorData() {
-      const streetfoodApiUrl = `${API_BASE_URL}/streetfood/${this.currentUser.city}`;
-      console.log("streetfoodApiUrl", streetfoodApiUrl);
+const store = useStore();
+const currentUser = store.state.currentUser;
+console.log("currentUser.city:", currentUser.city)
+// const currentCity = computed(() => currentUser.city);
 
-      axios
-        .get(streetfoodApiUrl)
-        .then((response) => {
-          this.vendorData = response.data;
-          console.log("vendorData: ", this.vendorData);
+// const onCityChange = () => {
+//   store.commit('setCity', currentCity);
+//   fetchVendorData();
+// };
 
-          const vendorList = Object.values(this.vendorData)[1];
-          console.log("vendorList: ", vendorList);
+const fetchVendorData = () => {
+  const vendorsApiUrl = `${API_BASE_URL}/vendors/${currentUser.city}`;
+  console.log("in fetchVendorData currentUser.city:", currentUser.city);
 
-          this.data = Object.values(vendorList).map((vendor) => ({
-            name: vendor.name,
-            logo: vendor.images?.logo_small,
-            website: vendor.url,
-            phone: vendor.phone,
-            description: vendor.description,
-            payment_methods: vendor.payment_methods,
-            rating: vendor.rating,
-            identifier: vendor.identifier,
-          }));
+  axios
+    .get(vendorsApiUrl)
+    .then((response) => {
+      const vendorData = response.data.vendors;
+      console.log('Vendor Data:', vendorData);
 
-          console.log("data: ", this.data);
+      data.value = Object.values(vendorData).map((vendor) => ({
+          name: vendor.name,
+          logo: vendor.images?.logo_small,
+          website: vendor.url,
+          phone: vendor.phone,
+          description: vendor.description,
+          payment_methods: vendor.payment_methods,
+          rating: vendor.rating,
+          identifier: vendor.identifier,
+        }));
 
-          this.isLoading = false;
-        })
-        .catch((error) => {
-          console.error("Error fetching streetfood data:", error);
-          this.isLoading = false;
-        });
-    },
-  },
+      isLoading.value = false;
+    })
+    .catch((error) => {
+      console.error('Error fetching streetfood data:', error);
+      isLoading.value = false;
+    });
 };
+
+// onMounted(onCityChange);
+onMounted(fetchVendorData);
+
+watch(() => currentUser.city, (newValue, oldValue) => {
+  if (newValue !==oldValue) {
+    isLoading.value = true;
+    fetchVendorData();
+  }
+});
 </script>
 
 <style scoped>
-@import "bulma/css/bulma.min.css";
+@import 'bulma/css/bulma.min.css';
 
 .vendors-container {
   display: flex;

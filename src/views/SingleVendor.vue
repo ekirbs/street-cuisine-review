@@ -28,13 +28,18 @@ import axios from 'axios';
 import { API_BASE_URL } from "../../config";
 
 const route = useRoute();
+
+// refs
 const vendorIdentifier = ref(null);
+const city = ref(null);
 const vendor = ref(null);
 const isLoading = ref(true);
 
 onMounted(() => {
   vendorIdentifier.value = route.params.identifier;
+  city.value = route.params.city;
   console.log("route.params.identifier:", route.params.identifier);
+  console.log("route.params.city:", route.params.city);
   console.log("vendorIdentifier:", vendorIdentifier.value);
   fetchVendorData();
 });
@@ -47,19 +52,23 @@ watch(() => route.params.identifier, (newValue) => {
 
 const fetchVendorData = () => {
   console.log("Fetching vendor data for identifier:", vendorIdentifier.value)
-  const vendorApiUrl = `${API_BASE_URL}/streetfood/${vendorIdentifier.value}`;
+  console.log("City:", city.value);
+  const vendorApiUrl = `${API_BASE_URL}/vendors/${city.value}`;
+  console.log("vendorApiUrl:", vendorApiUrl);
 
   axios
     .get(vendorApiUrl)
     .then((response) => {
-      const vendorData = response.data.vendors[vendorIdentifier.value];
-      if (vendorData) {
+      const vendorData = response.data.vendors;
+      console.log("vendor data:", vendorData);
+      const chosenVendor = vendorData[vendorIdentifier.value];
+      if (chosenVendor) {
         vendor.value = {
-          name: vendorData.name,
-          logo: vendorData.images?.logo_small,
-          website: vendorData.website,
-          phone: vendorData.phone,
-          description: vendorData.description,
+          name: chosenVendor.name,
+          logo: chosenVendor.images?.logo_small,
+          website: chosenVendor.website,
+          phone: chosenVendor.phone,
+          description: chosenVendor.sdescription,
         };
       } else {
         vendor.value = null;

@@ -94,7 +94,7 @@ const router = createRouter({
       },
     },
     {
-      path: "/vendor/:identifier",
+      path: "/vendors/:city/:identifier",
       name: "single-vendor",
       component: SingleVendor,
       meta: {
