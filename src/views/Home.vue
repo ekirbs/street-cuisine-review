@@ -5,7 +5,6 @@
       <p>Your one-stop shop to fine dining on the streets.</p>
       <h1 class="clock-time">Current Time: {{  currentTime }}</h1>
     </main>
-    <Weather></Weather>
     <Weather2></Weather2>
   </div>
 </template>

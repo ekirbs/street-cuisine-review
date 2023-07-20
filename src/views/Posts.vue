@@ -108,6 +108,7 @@
                   &check;
                 </button>
                 <RouterLink
+                  v-if="currentUserUid === post.creatorUid"
                   :to="{
                     name: 'editPost',
                     params: { postId: post.id },
@@ -117,6 +118,7 @@
                   &#9998;
                 </RouterLink>
                 <button
+                  v-if="currentUserUid === post.creatorUid"
                   @click="deletePost(post.id)"
                   class="button is-danger ml-2"
                 >
@@ -136,7 +138,7 @@
 
 <script setup>
 // imports
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import { getAuth } from 'firebase/auth';
 import {
   collection,
@@ -165,6 +167,7 @@ const posts = ref([]);
 const postTitle = ref('');
 const postContent = ref('');
 const termsAgreed = ref('');
+const currentUserUid = ref('');
 
 // get posts
 onMounted(() => {
@@ -179,18 +182,31 @@ onMounted(() => {
         content: doc.data().content,
         liked: doc.data().liked,
         creatorDisplayName: doc.data().creatorDisplayName,
+        creatorUid: doc.data().creatorUid,
       };
       fbPosts.push(post);
     });
     posts.value = fbPosts;
   });
+
+  // user auth
+  const currentUser = getAuth().currentUser;
+  currentUserUid.value = currentUser ? currentUser.uid : null;
 });
+
+// // user auth
+// const currentUserUid = computed(() => {
+//   const currentUser = getAuth().currentUser;
+//   console.log("currentUser.uid in auth:", currentUser.uid);
+//   return currentUser ? currentUser.uid : null;
+// })
 
 // add post
 const addPost = () => {
   const currentUser = getAuth().currentUser;
   console.log("current user", currentUser);
   if (currentUser) {
+    console.log("currentUser uid of post:", currentUser.uid);
     addDoc(postsCollectionRef, {
       title: postTitle.value,
       content: postContent.value,
