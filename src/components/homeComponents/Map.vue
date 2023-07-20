@@ -249,11 +249,17 @@ const mapStyle = [
   height: 400px;
 } */
 
-.map-container,
-.map {
-  height: 500px;
-  width: 500px;
+.map-container {
+  height: 86vw;
+  width: 86vw;
+  margin: 15px auto;
+  border: 2px solid black;
+}
 
-  margin: 10px;
+.map {
+  height: 85vw;
+  width: 85vw;
+
+  margin: 2px auto;
 }
 </style>

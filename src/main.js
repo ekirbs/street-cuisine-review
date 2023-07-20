@@ -5,6 +5,7 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 
+// import { GMapMap, GMapCluster, GMapMarker, GMapInfoWindow, VueGoogleMaps } from "@fawmi/vue-google-maps";
 import VueGoogleMaps from "@fawmi/vue-google-maps";
 
 import { library } from "@fortawesome/fontawesome-svg-core";

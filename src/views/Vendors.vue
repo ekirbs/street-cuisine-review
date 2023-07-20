@@ -48,13 +48,10 @@ import { RouterLink } from 'vue-router';
 import { API_BASE_URL } from '../../config';
 import { useStore } from 'vuex';
 
-const isLoading = ref(true);
-const data = ref([]);
-const cities = ['boston', 'toronto'];
-
+// vuex store
 const store = useStore();
 const currentUser = store.state.currentUser;
-console.log("currentUser.city:", currentUser.city)
+console.log("currentUser.city:", currentUser.city);
 // const currentCity = computed(() => currentUser.city);
 
 // const onCityChange = () => {
@@ -62,6 +59,12 @@ console.log("currentUser.city:", currentUser.city)
 //   fetchVendorData();
 // };
 
+// refs
+const isLoading = ref(true);
+const data = ref([]);
+const cities = ['boston', 'toronto'];
+
+// api fetch
 const fetchVendorData = () => {
   const vendorsApiUrl = `${API_BASE_URL}/vendors/${currentUser.city}`;
   console.log("in fetchVendorData currentUser.city:", currentUser.city);
