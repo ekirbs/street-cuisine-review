@@ -6,16 +6,18 @@
       <h1 class="clock-time">Current Time: {{  currentTime }}</h1>
     </main>
     <Weather></Weather>
+    <Weather2></Weather2>
   </div>
 </template>
 
 <script>
-import { Weather } from "../components/homeComponents";
+import { Weather, Weather2 } from "../components/homeComponents";
 
 export default {
   name: "Home",
   components: {
     Weather,
+    Weather2,
   },
   data() {
     return {
@@ -48,7 +50,7 @@ export default {
 .home-container {
   background-color: aquamarine;
   width: 75vw;
-  height: 100vh;
+  min-height: 100vh;
   border-radius: 10px;
   margin: 10px auto;
   padding: 15px;

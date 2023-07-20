@@ -25,9 +25,17 @@
 
     <div class="forecast-container">
       <h3>5-Day Forecast</h3>
-      <div v-for="(day, index) in weatherData.list.slice(1, 6)" :key="index" class="forecast-day card">
+      <div
+        v-for="(day, index) in forecastDays"
+        :key="index"
+        class="forecast-day card"
+      >
         <h4>{{ getFormattedDate(index + 1) }}</h4>
-        <img :src="getWeatherIconUrl(day.weather[0].icon)" alt="Weather Icon" class="forecast-icon" />
+        <img
+          :src="getWeatherIconUrl(day.weather[0].icon)"
+          alt="Weather Icon"
+          class="forecast-icon"
+        />
         <p>Temperature: {{ day.main.temp }}</p>
         <p>Humidity: {{ day.main.humidity }}</p>
         <p>Wind Speed: {{ day.wind.speed }}</p>
@@ -37,15 +45,15 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from 'axios';
 
 export default {
-  name: "Weather",
+  name: 'Weather',
   data() {
     return {
       weatherData: null,
       formattedDate: null,
-      weatherIconUrl: "",
+      weatherIconUrl: '',
       isLoading: true,
     };
   },
@@ -62,16 +70,16 @@ export default {
   },
   methods: {
     fetchWeatherData() {
-      const weatherApiKey = "3044316f6126db93462603440b6cd43c";
-      const units = "imperial";
-      const lang = "en";
+      const weatherApiKey = '3044316f6126db93462603440b6cd43c';
+      const units = 'imperial';
+      const lang = 'en';
       const weatherApiURL = `https://api.openweathermap.org/data/2.5/forecast?q=Boston&appid=${weatherApiKey}&units=${units}&lang=${lang}`;
 
       axios
         .get(weatherApiURL)
         .then((response) => {
           this.weatherData = response.data;
-          console.log("weatherData: ", this.weatherData);
+          console.log('weatherData: ', this.weatherData);
 
           const timeElapsed = Date.now();
           const today = new Date(timeElapsed);
@@ -83,13 +91,15 @@ export default {
           this.isLoading = false;
         })
         .catch((error) => {
-          console.error("Error fetching weather data:", error);
+          console.error('Error fetching weather data:', error);
           this.isLoading = false;
         });
     },
     getFormattedDate(index) {
       const today = new Date();
-      const forecastDate = new Date(today.getTime() + index * 24 * 60 * 60 * 1000);
+      const forecastDate = new Date(
+        today.getTime() + index * 24 * 60 * 60 * 1000
+      );
       return forecastDate.toLocaleDateString();
     },
     getWeatherIconUrl(iconCode) {
@@ -100,7 +110,7 @@ export default {
 </script>
 
 <style scoped>
-@import "bulma/css/bulma.min.css";
+@import 'bulma/css/bulma.min.css';
 
 .weather-container {
   padding: 15px;
@@ -133,7 +143,7 @@ export default {
   margin: 5px;
   padding: 5px;
   background-color: azure;
-  box-shadow: 1px 1px 2px black;;
+  box-shadow: 1px 1px 2px black;
 
   display: flex;
   flex-direction: column;
