@@ -37,6 +37,7 @@ export default {};
   min-height: 12vh;
   background-color: burlywood;
   padding: 10px;
+  border-top: 2px solid black;
 
   display: flex;
   /* flex-direction: column; */

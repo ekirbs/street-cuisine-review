@@ -164,4 +164,12 @@ onMounted(fetchWeatherData);
   justify-content: center;
   align-items: center;
 }
+
+.weather-container,
+.forecast-day {
+  background-image: url("@/assets/images/sky-background.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
 </style>
