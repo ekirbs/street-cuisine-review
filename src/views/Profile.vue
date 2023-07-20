@@ -6,7 +6,7 @@
       Change Display Name
     </button>
     <p>Email: {{ userData.email }}</p>
-    <p>Current City: {{ userData.city }}</p>
+    <p>Current City: {{ capitalizeCity(currentUser.city) }}</p>
     <p>Registered On: {{ formattedRegistrationDate }}</p>
     
     <UserPosts />
@@ -55,6 +55,7 @@ import { UserPosts } from '@/components/profileComponents';
 
 import { onMounted, ref, reactive, computed } from 'vue';
 import { getAuth, onAuthStateChanged, updateProfile } from 'firebase/auth';
+import { useStore } from 'vuex';
 
 // reactive
 const userData = reactive({
@@ -68,7 +69,9 @@ const showModal = ref(false);
 const showErrorMessage = ref(false);
 const newDisplayName = ref('');
 
-let currentUser = null;
+// let currentUser = null;
+const store = useStore();
+let currentUser = store.state.currentUser;
 
 onMounted(() => {
   const currentUser = getAuth().currentUser;
@@ -162,6 +165,11 @@ const saveChanges = async () => {
   } else {
     showErrorMessage.value = true;
   }
+};
+
+const capitalizeCity = (city) => {
+  if(!city) return '';
+  return city.replace(/\b\w/g, (char) => char.toUpperCase());
 };
 </script>
 
