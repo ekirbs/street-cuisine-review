@@ -5,18 +5,17 @@
       <p>Your one-stop shop to fine dining on the streets.</p>
       <h1 class="clock-time">Current Time: {{  currentTime }}</h1>
     </main>
-    <Weather2></Weather2>
+    <Weather></Weather>
   </div>
 </template>
 
 <script>
-import { Weather, Weather2 } from "../components/homeComponents";
+import { Weather } from "../components/homeComponents";
 
 export default {
   name: "Home",
   components: {
     Weather,
-    Weather2,
   },
   data() {
     return {

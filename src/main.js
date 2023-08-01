@@ -32,7 +32,7 @@ app.use(router);
 app.use(store);
 app.use(VueGoogleMaps, {
   load: {
-    key: "AIzaSyDH7BdbUXCS6bgi4-kadjzN7gJiFvIDElg",
+    key: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
     // libraries: [places],
     // installComponents: true,
     language: "en",

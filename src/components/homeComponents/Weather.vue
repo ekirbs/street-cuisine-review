@@ -1,16 +1,22 @@
 <template>
+  <h1 class="weather-header">Weather Report</h1>
   <div v-if="isLoading">
     <font-awesome-icon :icon="['fas', 'spinner']" spin />
     <p>Loading...</p>
   </div>
   <div v-else>
-    <div class="weather-container">
-      <h2 v-if="weatherData && weatherData.city">
+    <div
+      class="weather-container" v-if="weatherData">
+      <h3>Today's Forecast</h3>
+      <h2 v-if="weatherData.city.name">
         City: {{ weatherData.city.name }}
       </h2>
       <p v-if="formattedDate">Date: {{ formattedDate }}</p>
       <div
-        v-if="weatherData && weatherData.list && weatherData.list.length > 0"
+        v-if="
+          weatherData.list &&
+          weatherData.list.length > 0
+        "
         class="weather-info-section"
       >
         <img :src="weatherIconUrl" alt="Weather Icon" class="weather-icon" />
@@ -44,73 +50,81 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import axios from 'axios';
+import { onMounted, ref, computed, watch } from 'vue';
+import { useStore } from 'vuex';
 
-export default {
-  name: 'Weather',
-  data() {
-    return {
-      weatherData: null,
-      formattedDate: null,
-      weatherIconUrl: '',
-      isLoading: true,
-    };
-  },
-  mounted() {
-    this.fetchWeatherData();
-  },
-  computed: {
-    forecastDays() {
-      if (this.weatherData && this.weatherData.list) {
-        return this.weatherData.list.slice(1, 6);
-      }
-      return [];
-    },
-  },
-  methods: {
-    fetchWeatherData() {
-      const weatherApiKey = '3044316f6126db93462603440b6cd43c';
-      const units = 'imperial';
-      const lang = 'en';
-      const weatherApiURL = `https://api.openweathermap.org/data/2.5/forecast?q=Boston&appid=${weatherApiKey}&units=${units}&lang=${lang}`;
+// vuex store
+const store = useStore();
+const city = ref(store.state.currentUser.city);
+console.log('city:', city.value);
 
-      axios
-        .get(weatherApiURL)
-        .then((response) => {
-          this.weatherData = response.data;
-          console.log('weatherData: ', this.weatherData);
+const weatherData = ref(null);
+const formattedDate = ref(null);
+const weatherIconUrl = ref('');
+const isLoading = ref(true);
 
-          const timeElapsed = Date.now();
-          const today = new Date(timeElapsed);
-          this.formattedDate = today.toLocaleDateString();
+const forecastDays = computed(() => {
+  if (weatherData.value && weatherData.value.list) {
+    return weatherData.value.list.slice(1, 6);
+  }
+  return [];
+});
 
-          const weatherIconCode = this.weatherData.list[0].weather[0].icon;
-          this.weatherIconUrl = `http://openweathermap.org/img/w/${weatherIconCode}.png`;
+const fetchWeatherData = () => {
+  const weatherApiKey = import.meta.env.VITE_WEATHER_API_KEY;
+  const units = 'imperial';
+  const lang = 'en';
+  const weatherApiURL = `https://api.openweathermap.org/data/2.5/forecast?q=${city.value}&appid=${weatherApiKey}&units=${units}&lang=${lang}`;
 
-          this.isLoading = false;
-        })
-        .catch((error) => {
-          console.error('Error fetching weather data:', error);
-          this.isLoading = false;
-        });
-    },
-    getFormattedDate(index) {
-      const today = new Date();
-      const forecastDate = new Date(
-        today.getTime() + index * 24 * 60 * 60 * 1000
-      );
-      return forecastDate.toLocaleDateString();
-    },
-    getWeatherIconUrl(iconCode) {
-      return `http://openweathermap.org/img/w/${iconCode}.png`;
-    },
-  },
+  axios
+    .get(weatherApiURL)
+    .then((response) => {
+      weatherData.value = response.data;
+      console.log('weatherData: ', weatherData.value);
+
+      const timeElapsed = Date.now();
+      const today = new Date(timeElapsed);
+      formattedDate.value = today.toLocaleDateString();
+      console.log("formatted date:", formattedDate.value);
+
+      const weatherIconCode = weatherData.value.list[0].weather[0].icon;
+      weatherIconUrl.value = `http://openweathermap.org/img/w/${weatherIconCode}.png`;
+
+      isLoading.value = false;
+    })
+    .catch((error) => {
+      console.error('Error fetching weather data:', error);
+      weatherData.value = null;
+      isLoading.value = false;
+    });
 };
+
+const getFormattedDate = (index) => {
+  const today = new Date();
+  const forecastDate = new Date(today.getTime() + index * 24 * 60 * 60 * 1000);
+  return forecastDate.toLocaleDateString();
+};
+
+const getWeatherIconUrl = (iconCode) => {
+  return `http://openweathermap.org/img/w/${iconCode}.png`;
+};
+
+watch(weatherData, (newData) => {
+  console.log('weatherData updated:', newData);
+})
+
+// fetchWeatherData();
+onMounted(fetchWeatherData);
 </script>
 
 <style scoped>
 @import 'bulma/css/bulma.min.css';
+
+.weather-header {
+  text-decoration: underline;
+}
 
 .weather-container {
   padding: 15px;
@@ -149,5 +163,13 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.weather-container,
+.forecast-day {
+  background-image: url("@/assets/images/sky-background.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
 </style>
