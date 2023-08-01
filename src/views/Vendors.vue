@@ -4,7 +4,7 @@
       <!-- <select v-model="currentUser.city" @change="onCityChange"> -->
       <select v-model="currentUser.city" @change="fetchVendorData">
         <option v-for="city in cities" :key="city" :value="city">
-          {{ city }}
+          {{ capitalizeCity(city) }}
         </option>
       </select>
     </div>
@@ -103,6 +103,11 @@ watch(() => currentUser.city, (newValue, oldValue) => {
     fetchVendorData();
   }
 });
+
+const capitalizeCity = (city) => {
+  if(!city) return '';
+  return city.replace(/\b\w/g, (char) => char.toUpperCase());
+};
 </script>
 
 <style scoped>

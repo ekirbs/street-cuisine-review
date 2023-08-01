@@ -2,10 +2,10 @@
   <div class="profile-container">
     <h1 class="profile-title">Profile Page</h1>
     <div class="columns">
-      <div class="column is-one-third">
+      <div class="column is-one-third card">
         <img src="../assets/images/blank-profile.webp" alt="blank profile" class="profile-img">
       </div>
-      <div class="column">
+      <div class="column card">
         <h3>Display Name: <span class="display-name">{{ userData.displayName }}</span></h3>
         <button class="change-name-button button is-success is-large" @click="showModal = true">
           Change Display Name
@@ -211,6 +211,11 @@ const capitalizeCity = (city) => {
 
 .columns {
   width: 100%;
+}
+
+.column {
+  margin: 10px;
+  border-radius: 10px;
 }
 
 /* PROFILE IMG STYLE */
