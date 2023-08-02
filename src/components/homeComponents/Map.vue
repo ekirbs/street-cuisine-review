@@ -76,7 +76,7 @@ const infoWindowOptions = (vendor) => ({
         Name: ${vendor.name}
       </h5>
       <p>
-        ${vendor.description}
+        Description: ${vendor.description}
       </p>
     </div>
   `,
