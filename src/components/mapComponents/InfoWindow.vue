@@ -1,14 +1,22 @@
 <template>
-  <!-- <div class="info-window-container">
-    <p v-if="vendor">{{ vendor.name }}</p>
-    <p v-if="vendor">{{ vendor.description }}</p>
+  <div class="info-window-container">
+    <p v-if="vendor" class="iw-v-name">{{ vendor.name }}</p>
+    <p v-if="vendor" class="id-v-description">{{ vendor.description }}</p>
     <p v-if="!vendor">Vendor info not available.</p>
-  </div> -->
+  </div>
 </template>
 
 <script setup>
+  import { defineProps } from 'vue';
+
+  const props = defineProps({
+    vendor: Object,
+  });
 </script>
 
 <style scoped>
+  .iw-v-name {
+    text-decoration: underline;
+  }
 
 </style>

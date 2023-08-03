@@ -19,15 +19,19 @@
           :title="vendor.name"
           :icon="getVendorIcon(vendor)"
           :clickable="true"
-          @click="center = vendor.position"
+          @click="openMarker(vendor)"
+          :closeclick="true"
+          @closeclick="openMarker(null)"
         >
           <GMapInfoWindow
-            :opened="true"
+            :closeclick="true"
+            @closeclick="openMarker(null)"
+            :opened="selectedVendor.value === vendor.identifier"
             :options="infoWindowOptions(vendor)"
           >
-            <div>
+            <!-- <div>
               <InfoWindow :vendor="vendor" />
-            </div>
+            </div> -->
           </GMapInfoWindow>
         </GMapMarker>
       </GMapMap>
@@ -44,7 +48,7 @@ import { useStore } from 'vuex';
 import { API_BASE_URL } from '../../../config';
 import axios from 'axios';
 
-import { InfoWindow } from '../mapComponents';
+// import { InfoWindow } from '../mapComponents';
 import { faTruck } from '@fortawesome/free-solid-svg-icons';
 
 // vuex store
@@ -57,6 +61,13 @@ const zoomLevel = ref(10);
 const vendorsData = ref([]);
 const isLoading = ref(true);
 const error = ref(null);
+
+const selectedVendor = ref(null);
+
+const openMarker = (vendor) => {
+  selectedVendor.value = vendor.identifier;
+  center.value = vendor.position;
+};
 
 const vendorLogoIcon = ref({
   url: '',
@@ -89,6 +100,7 @@ const fetchVendorsData = async () => {
     console.log('Fetching vendors data for city:', selectedCity.value);
     const response = await axios.get(vendorsApiUrl);
     vendorsData.value = Object.values(response.data.vendors).map((vendor) => ({
+      identifier: vendor.identifier,
       name: vendor.name,
       logo: vendor.images?.logo_small,
       position: {
