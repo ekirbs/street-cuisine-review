@@ -1,15 +1,15 @@
-import "./assets/main.css";
+import './assets/main.css';
 
-import { createApp } from "vue";
-import App from "./App.vue";
-import router from "./router";
-import store from "./store";
+import { createApp } from 'vue';
+import App from './App.vue';
+import router from './router';
+import store from './store';
 
 // import { GMapMap, GMapCluster, GMapMarker, GMapInfoWindow, VueGoogleMaps } from "@fawmi/vue-google-maps";
-import VueGoogleMaps from "@fawmi/vue-google-maps";
+import VueGoogleMaps from '@fawmi/vue-google-maps';
 
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import {
   faTruck,
   faEnvelope,
@@ -17,14 +17,24 @@ import {
   faLock,
   faUser,
   faSpinner,
-} from "@fortawesome/free-solid-svg-icons";
+} from '@fortawesome/free-solid-svg-icons';
 import {
   faGithub,
   faInstagram,
-  faLinkedin
-} from "@fortawesome/free-brands-svg-icons";
+  faLinkedin,
+} from '@fortawesome/free-brands-svg-icons';
 
-library.add(faTruck, faEnvelope, faCheck, faLock, faUser, faSpinner, faGithub, faInstagram, faLinkedin);
+library.add(
+  faTruck,
+  faEnvelope,
+  faCheck,
+  faLock,
+  faUser,
+  faSpinner,
+  faGithub,
+  faInstagram,
+  faLinkedin
+);
 
 const app = createApp(App);
 
@@ -35,10 +45,10 @@ app.use(VueGoogleMaps, {
     key: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
     // libraries: [places],
     // installComponents: true,
-    language: "en",
+    language: 'en',
   },
 });
 
-app.component("font-awesome-icon", FontAwesomeIcon);
+app.component('font-awesome-icon', FontAwesomeIcon);
 
-app.mount("#app");
+app.mount('#app');

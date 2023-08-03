@@ -19,19 +19,16 @@
           :title="vendor.name"
           :icon="getVendorIcon(vendor)"
           :clickable="true"
-          @click="openMarker(vendor)"
-          :closeclick="true"
-          @closeclick="openMarker(null)"
+          @click="openMarker(vendor.identifier, vendor.position)"
         >
           <GMapInfoWindow
             :closeclick="true"
             @closeclick="openMarker(null)"
-            :opened="selectedVendor.value === vendor.identifier"
-            :options="infoWindowOptions(vendor)"
+            :opened="openedMarkerIdentifier === vendor.identifier"
           >
-            <!-- <div>
+            <div>
               <InfoWindow :vendor="vendor" />
-            </div> -->
+            </div>
           </GMapInfoWindow>
         </GMapMarker>
       </GMapMap>
@@ -47,8 +44,8 @@ import { onMounted, ref, watch, computed } from 'vue';
 import { useStore } from 'vuex';
 import { API_BASE_URL } from '../../../config';
 import axios from 'axios';
+import { InfoWindow } from '../mapComponents';
 
-// import { InfoWindow } from '../mapComponents';
 import { faTruck } from '@fortawesome/free-solid-svg-icons';
 
 // vuex store
@@ -61,13 +58,7 @@ const zoomLevel = ref(10);
 const vendorsData = ref([]);
 const isLoading = ref(true);
 const error = ref(null);
-
-const selectedVendor = ref(null);
-
-const openMarker = (vendor) => {
-  selectedVendor.value = vendor.identifier;
-  center.value = vendor.position;
-};
+const openedMarkerIdentifier = ref(null);
 
 const vendorLogoIcon = ref({
   url: '',
@@ -75,23 +66,36 @@ const vendorLogoIcon = ref({
 });
 
 const defaultIcon = ref({
-  url: faTruck.icon[4],
+  url: faTruck,
+  // url: faTruck.icon[4],
   scaledSize: { width: 50, height: 50 },
 });
 
-const infoWindowOptions = (vendor) => ({
-  maxWidth: 200,
-  content: `
-    <div>
-      <h5>
-        Name: ${vendor.name}
-      </h5>
-      <p>
-        Description: ${vendor.description}
-      </p>
-    </div>
-  `,
-});
+// vendor info window
+const openMarker = (identifier, position) => {
+  if (openedMarkerIdentifier.value !== identifier) {
+    openedMarkerIdentifier.value = identifier;
+    if (position) {
+      center.value = position;
+    };
+  } else {
+    openedMarkerIdentifier.value = null;
+  }
+};
+
+// const infoWindowOptions = (vendor) => ({
+//   maxWidth: 200,
+//   content: `
+//     <div>
+//       <h5>
+//         Name: ${vendor.name}
+//       </h5>
+//       <p>
+//         Description: ${vendor.description}
+//       </p>
+//     </div>
+//   `,
+// });
 
 const fetchVendorsData = async () => {
   isLoading.value = true;
@@ -127,6 +131,7 @@ const getVendorIcon = (vendor) => {
     return { ...vendorLogoIcon.value, url: vendor.logo };
   } else {
     return { ...defaultIcon.value };
+    // return { icon: faTruck, scaledSize: { width: 50, height: 50 } };
   }
 };
 
@@ -155,222 +160,6 @@ watch(vendorsData, () => {
     vendorLogoIcon.value.url = '';
   }
 });
-
-// const mapStyle = [
-//   {
-//     elementType: 'geometry',
-//     stylers: [
-//       {
-//         color: '#ebe3cd',
-//       },
-//     ],
-//   },
-//   {
-//     elementType: 'labels.text.fill',
-//     stylers: [
-//       {
-//         color: '#523735',
-//       },
-//     ],
-//   },
-//   {
-//     elementType: 'labels.text.stroke',
-//     stylers: [
-//       {
-//         color: '#f5f1e6',
-//       },
-//     ],
-//   },
-//   {
-//     featureType: 'administrative',
-//     elementType: 'geometry.stroke',
-//     stylers: [
-//       {
-//         color: '#c9b2a6',
-//       },
-//     ],
-//   },
-//   {
-//     featureType: 'administrative.land_parcel',
-//     elementType: 'geometry.stroke',
-//     stylers: [
-//       {
-//         color: '#dcd2be',
-//       },
-//     ],
-//   },
-//   {
-//     featureType: 'administrative.land_parcel',
-//     elementType: 'labels.text.fill',
-//     stylers: [
-//       {
-//         color: '#ae9e90',
-//       },
-//     ],
-//   },
-//   {
-//     featureType: 'landscape.natural',
-//     elementType: 'geometry',
-//     stylers: [
-//       {
-//         color: '#dfd2ae',
-//       },
-//     ],
-//   },
-//   {
-//     featureType: 'poi',
-//     elementType: 'geometry',
-//     stylers: [
-//       {
-//         color: '#dfd2ae',
-//       },
-//     ],
-//   },
-//   {
-//     featureType: 'poi',
-//     elementType: 'labels.text.fill',
-//     stylers: [
-//       {
-//         color: '#93817c',
-//       },
-//     ],
-//   },
-//   {
-//     featureType: 'poi.park',
-//     elementType: 'geometry.fill',
-//     stylers: [
-//       {
-//         color: '#a5b076',
-//       },
-//     ],
-//   },
-//   {
-//     featureType: 'poi.park',
-//     elementType: 'labels.text.fill',
-//     stylers: [
-//       {
-//         color: '#447530',
-//       },
-//     ],
-//   },
-//   {
-//     featureType: 'road',
-//     elementType: 'geometry',
-//     stylers: [
-//       {
-//         color: '#f5f1e6',
-//       },
-//     ],
-//   },
-//   {
-//     featureType: 'road.arterial',
-//     elementType: 'geometry',
-//     stylers: [
-//       {
-//         color: '#fdfcf8',
-//       },
-//     ],
-//   },
-//   {
-//     featureType: 'road.highway',
-//     elementType: 'geometry',
-//     stylers: [
-//       {
-//         color: '#f8c967',
-//       },
-//     ],
-//   },
-//   {
-//     featureType: 'road.highway',
-//     elementType: 'geometry.stroke',
-//     stylers: [
-//       {
-//         color: '#e9bc62',
-//       },
-//     ],
-//   },
-//   {
-//     featureType: 'road.highway.controlled_access',
-//     elementType: 'geometry',
-//     stylers: [
-//       {
-//         color: '#e98d58',
-//       },
-//     ],
-//   },
-//   {
-//     featureType: 'road.highway.controlled_access',
-//     elementType: 'geometry.stroke',
-//     stylers: [
-//       {
-//         color: '#db8555',
-//       },
-//     ],
-//   },
-//   {
-//     featureType: 'road.local',
-//     elementType: 'labels.text.fill',
-//     stylers: [
-//       {
-//         color: '#806b63',
-//       },
-//     ],
-//   },
-//   {
-//     featureType: 'transit.line',
-//     elementType: 'geometry',
-//     stylers: [
-//       {
-//         color: '#dfd2ae',
-//       },
-//     ],
-//   },
-//   {
-//     featureType: 'transit.line',
-//     elementType: 'labels.text.fill',
-//     stylers: [
-//       {
-//         color: '#8f7d77',
-//       },
-//     ],
-//   },
-//   {
-//     featureType: 'transit.line',
-//     elementType: 'labels.text.stroke',
-//     stylers: [
-//       {
-//         color: '#ebe3cd',
-//       },
-//     ],
-//   },
-//   {
-//     featureType: 'transit.station',
-//     elementType: 'geometry',
-//     stylers: [
-//       {
-//         color: '#dfd2ae',
-//       },
-//     ],
-//   },
-//   {
-//     featureType: 'water',
-//     elementType: 'geometry.fill',
-//     stylers: [
-//       {
-//         color: '#b9d3c2',
-//       },
-//     ],
-//   },
-//   {
-//     featureType: 'water',
-//     elementType: 'labels.text.fill',
-//     stylers: [
-//       {
-//         color: '#92998d',
-//       },
-//     ],
-//   },
-// ];
 
 const mapOptions = computed(() => ({
   center: center.value,

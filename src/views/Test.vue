@@ -1,18 +1,18 @@
 <template>
   <div class="test-container">
     <h1>This is the test bed for components and other blocks.</h1>
-    <Map2></Map2>
+    <Map></Map>
     <Weather></Weather>
   </div>
 </template>
 
 <script>
-  import { Map2, Weather } from "../components/homeComponents";
+  import { Map, Weather } from "../components/homeComponents";
 
   export default {
     name: "Test",
     components: {
-      Map2,
+      Map,
       Weather,
     }
   }
