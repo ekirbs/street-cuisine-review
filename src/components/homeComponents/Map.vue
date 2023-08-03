@@ -112,6 +112,7 @@ const fetchVendorsData = async () => {
         lng: Number(vendor.last.longitude),
       },
       description: vendor.description,
+      city: vendor.region,
     }));
     console.log('vendorsData:', vendorsData.value);
     isLoading.value = false;

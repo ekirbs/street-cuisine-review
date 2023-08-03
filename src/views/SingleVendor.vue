@@ -68,7 +68,7 @@ const fetchVendorData = () => {
           logo: chosenVendor.images?.logo_small,
           website: chosenVendor.website,
           phone: chosenVendor.phone,
-          description: chosenVendor.sdescription,
+          description: chosenVendor.description,
         };
       } else {
         vendor.value = null;
