@@ -1,6 +1,6 @@
 /* color palette from <https://github.com/vuejs/theme> */
 :root {
-  --vt-c-white: #ffffff;
+  /* --vt-c-white: #ffffff;
   --vt-c-white-soft: #f8f8f8;
   --vt-c-white-mute: #f2f2f2;
 
@@ -18,8 +18,19 @@
   --vt-c-text-light-1: var(--vt-c-indigo);
   --vt-c-text-light-2: rgba(60, 60, 60, 0.66);
   --vt-c-text-dark-1: var(--vt-c-white);
-  --vt-c-text-dark-2: rgba(235, 235, 235, 0.64);
-}
+  --vt-c-text-dark-2: rgba(235, 235, 235, 0.64); */
+
+  /* my palette */
+  --primary: #424242;
+  --secondary: #7cb342;
+  --tertiary: #bdbdbd;
+  --quatrinary: #eeeeee;
+  --light: #e3e4e3;
+  --black: #000000;
+  --white: #ffffff;
+  --error: rgb(228, 46, 1);
+  --transparent: rgba(251, 251, 251, 0.50)
+;}
 
 /* semantic color variables for this project */
 :root {

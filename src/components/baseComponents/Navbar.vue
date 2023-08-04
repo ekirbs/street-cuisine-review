@@ -173,7 +173,8 @@ watch(
 
 .navbar {
   padding: 5px 10px;
-  border-bottom: 2px solid black;;
+  background-color: var(--secondary) !important;
+  border-bottom: 2px solid black;
 }
 
 .navbar-brand {

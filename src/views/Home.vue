@@ -46,7 +46,7 @@ export default {
 @import "bulma/css/bulma.min.css";
 
 .home-container {
-  background-color: aquamarine;
+  background-color: var(--transparent);
   width: 75vw;
   min-height: 100vh;
   border-radius: 10px;
