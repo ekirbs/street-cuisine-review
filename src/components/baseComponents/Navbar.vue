@@ -4,7 +4,9 @@
       <RouterLink to="/" class="navbar-item brand-container">
         <div class="brand-words-container">
           <h1 class="brand-name">Street Cuisine Review</h1>
-          <p class="brand-quote">Your one-stop shop for fine dining on the streets.</p>
+          <p class="brand-quote">
+            Your one-stop shop for fine dining on the streets.
+          </p>
         </div>
         <div class="brand-img-container">
           <img
@@ -37,7 +39,11 @@
       </div>
     </div>
 
-    <div id="navbarContainer" class="navbar-menu" :class="{ 'is-active': showNav }">
+    <div
+      id="navbarContainer"
+      class="navbar-menu"
+      :class="{ 'is-active': showNav }"
+    >
       <div class="navbar-start" v-if="isLoggedIn">
         <!-- <RouterLink @click.native="closeDropdown" to="/" class="navbar-item">Home</RouterLink> -->
 
@@ -93,10 +99,10 @@
 </template>
 
 <script setup>
-import { onMounted, ref, watch, computed } from "vue";
-import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
-import { RouterLink, useRouter } from "vue-router";
-import { useStore } from "vuex";
+import { onMounted, ref, watch, computed } from 'vue';
+import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
+import { RouterLink, useRouter } from 'vue-router';
+import { useStore } from 'vuex';
 
 const router = useRouter();
 const auth = getAuth();
@@ -108,24 +114,24 @@ const showNav = ref(false);
 
 const handleSignOut = () => {
   signOut(auth).then(() => {
-    router.push("/");
+    router.push('/');
   });
 };
 
 onMounted(() => {
   const user = auth.currentUser;
   if (user) {
-    store.commit("setLoggedIn", true);
+    store.commit('setLoggedIn', true);
   } else {
-    store.commit("setLoggedIn", false);
+    store.commit('setLoggedIn', false);
   }
 });
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
-    store.commit("setLoggedIn", true);
+    store.commit('setLoggedIn', true);
   } else {
-    store.commit("setLoggedIn", false);
+    store.commit('setLoggedIn', false);
   }
 });
 
@@ -142,39 +148,18 @@ onAuthStateChanged(auth, (user) => {
 watch(
   () => store.state.isLoggedIn,
   (newVal) => {
-    console.log("log status:", newVal);
-  },
+    console.log('log status:', newVal);
+  }
 );
 </script>
 
 <style>
-@import "bulma/css/bulma.min.css";
-
-.brand-words-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.brand-name {
-  font-size: 35px;
-}
-
-.brand-quote {
-  font-size: 15px;
-}
-
-.logo-img {
-  min-height: 75px;
-  min-width: 75px;
-  margin: 0 5px ;
-}
+@import 'bulma/css/bulma.min.css';
 
 .navbar {
   padding: 5px 10px;
-  background-color: var(--secondary) !important;
-  border-bottom: 2px solid black;
+  background-color: var(--primeGreen) !important;
+  border-bottom: 10px solid var(--primeSlate);
 }
 
 .navbar-brand {
@@ -185,5 +170,29 @@ watch(
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.brand-words-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+  color: var(--primeOffWhite);
+}
+
+.brand-name {
+  font-size: 35px;
+  border-bottom: 2px solid var(--primeSlate);
+}
+
+.brand-quote {
+  font-size: 15px;
+}
+
+.logo-img {
+  min-height: 75px;
+  min-width: 75px;
+  margin: 0 5px;
 }
 </style>

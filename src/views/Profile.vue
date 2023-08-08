@@ -188,7 +188,7 @@ const capitalizeCity = (city) => {
 .profile-container {
   min-height: 100vh;
   max-width: 80vw;
-  background-color: blanchedalmond;
+  background-color: var(--transparent);
   border-radius: 10px;
   display: flex;
   flex-direction: column;

@@ -21,10 +21,10 @@
   --vt-c-text-dark-2: rgba(235, 235, 235, 0.64); */
 
   /* my palette */
-  --primary: #424242;
-  --secondary: #7cb342;
+  --primeSlate: #424242;
+  --primeGreen: #7cb342;
+  --primeOffWhite: #eeeeee;
   --tertiary: #bdbdbd;
-  --quatrinary: #eeeeee;
   --light: #e3e4e3;
   --black: #000000;
   --white: #ffffff;
@@ -93,7 +93,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  background-image: url("@/assets/images/brickImg.jpg");
+  background-image: url("@/assets/images/boston-background.jpg");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;

@@ -35,14 +35,24 @@ export default {};
 
 .footer-container {
   min-height: 12vh;
-  background-color: burlywood;
+  background-color: var(--primeGreen);
   padding: 10px;
-  border-top: 2px solid black;
+  border-top: 10px solid var(--primeSlate);
 
   display: flex;
   /* flex-direction: column; */
   justify-content: space-around;
   align-items: center;
+}
+
+.footer-link {
+  color: var(--primeOffWhite);
+  transition: transform 0.2s;
+}
+
+.footer-link:hover {
+  color: var(--primeSlate);
+  transform: scale(1.1);
 }
 
 .footer-icon {
@@ -54,7 +64,17 @@ export default {};
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border-left: 1px solid black;
-  padding: 5px;
+  border-left: 1px solid var(--primeSlate);
+  padding: 5px 5px 5px 15px;
+}
+
+.links a {
+  color: var(--primeOffWhite);
+  transition: transform 0.2s;
+}
+
+.links a:hover {
+  color: var(--primeSlate);
+  transform: scale(1.1);
 }
 </style>

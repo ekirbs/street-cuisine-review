@@ -39,7 +39,7 @@
           <div class="control">
             <label class="checkbox">
               <input v-model="termsAgreed" type="checkbox" />
-              I agree to the <a href="#">terms and conditions</a>
+              I agree to the <a href="../../../CODE_OF_CONDUCT.md" class="checkbox-link">terms and conditions</a>
             </label>
           </div>
         </div>
@@ -129,7 +129,7 @@
         </div>
       </div>
     </div>
-    <div v-else>
+    <div v-else class="no-post-message">
       <p>No posts found for the current user.</p>
     </div>
   </div>
@@ -248,7 +248,7 @@ const toggleLiked = (id) => {
 // like comment
 </script>
 
-<style>
+<style scoped>
 @import 'bulma/css/bulma.min.css';
 
 .user-post-container {
@@ -257,7 +257,36 @@ const toggleLiked = (id) => {
   margin: 10px auto;
 
   width: 75vw;
-  background-color: bisque;
+  background-color: var(--primeSlate);
   border-radius: 10px;
+}
+
+.title h2 {
+  color: var(--primeGreen);
+  text-decoration: underline;
+}
+
+.user-post-container h3 {
+  color: var(--primeGreen);
+}
+
+.label {
+  color: var(--primeOffWhite);
+}
+
+.checkbox {
+  color: var(--primeOffWhite)
+}
+
+/* shouldn't need this...fix link... */
+.checkbox:hover {
+  color: var(--primeOffWhite)
+}
+
+.no-post-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--primeOffWhite);
 }
 </style>
