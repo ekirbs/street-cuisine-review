@@ -176,15 +176,15 @@ const mapOptions = computed(() => ({
 @import 'bulma/css/bulma.min.css';
 
 .map-container {
-  height: 75vw;
-  width: 75vw;
+  height: 70vw;
+  width: 70vw;
   margin: 15px auto;
   border: 2px solid black;
 }
 
 .map {
-  height: 75vw;
-  width: 75vw;
+  height: 70vw;
+  width: 70vw;
 
   margin: auto;
   /* height: 85vw;
