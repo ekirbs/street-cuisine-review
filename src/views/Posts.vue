@@ -1,6 +1,6 @@
 <template>
   <div class="post-container">
-    <div class="title has-text-centered">
+    <div class="title has-text-centered title-card">
       <h2>Posts</h2>
     </div>
     <h3 class="has-text-centered">working on the post component</h3>
@@ -130,7 +130,7 @@
         </div>
       </div>
     </div>
-    <div v-else>
+    <div v-else class="no-post-message">
       <p>there's nothing here</p>
     </div>
   </div>
@@ -252,7 +252,7 @@ const toggleLiked = (id) => {
 // like comment
 </script>
 
-<style>
+<style scoped>
 @import 'bulma/css/bulma.min.css';
 
 .post-container {
@@ -261,7 +261,22 @@ const toggleLiked = (id) => {
   margin: 10px auto;
 
   width: 75vw;
-  background-color: bisque;
+  background-color: var(--transparentSlate);
   border-radius: 10px;
+}
+
+.title-card {
+  background-color: var(--primeGreen);
+  border-radius: 10px;
+  width: 200px;
+  margin: 10px auto;
+  padding: 5px;
+}
+
+.no-post-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--primeOffWhite);
 }
 </style>

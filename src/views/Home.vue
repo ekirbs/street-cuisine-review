@@ -5,16 +5,18 @@
       <p>Your one-stop shop to fine dining on the streets.</p>
       <h1 class="clock-time">Current Time: {{  currentTime }}</h1>
     </main>
+    <Map></Map>
     <Weather></Weather>
   </div>
 </template>
 
 <script>
-import { Weather } from "../components/homeComponents";
+import { Map, Weather } from "../components/homeComponents";
 
 export default {
   name: "Home",
   components: {
+    Map,
     Weather,
   },
   data() {
@@ -46,7 +48,7 @@ export default {
 @import "bulma/css/bulma.min.css";
 
 .home-container {
-  background-color: var(--transparent);
+  background-color: var(--transparentSlate);
   width: 75vw;
   min-height: 100vh;
   border-radius: 10px;
@@ -55,7 +57,7 @@ export default {
 
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
 }
 

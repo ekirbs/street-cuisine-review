@@ -130,8 +130,13 @@ const capitalizeCity = (city) => {
   justify-content: center;
   align-items: center;
   width: 75vw;
+  background-color: var(--lessTransparentSlate);
+  transition: transform 0.2s;
+}
 
-  background-color: antiquewhite;
+.vendor-card:hover {
+  transform: scale(1.1);
+  background-color: var(--primeSlate);
 }
 
 .vendor {
@@ -139,6 +144,12 @@ const capitalizeCity = (city) => {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  color: var(--primeOffWhite);
+}
+
+.vendor:hover {
+  color: var(--primeGreen);
 }
 
 .truck-icon {

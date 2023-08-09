@@ -1,6 +1,8 @@
 <template>
   <div class="profile-container">
-    <h1 class="profile-title">Profile Page</h1>
+    <div class="title has-text-centered profile-title-card">
+      <h2>My Profile</h2>
+    </div>
     <div class="columns">
       <div class="column is-one-third card">
         <img src="../assets/images/blank-profile.webp" alt="blank profile" class="profile-img">
@@ -188,7 +190,7 @@ const capitalizeCity = (city) => {
 .profile-container {
   min-height: 100vh;
   max-width: 80vw;
-  background-color: var(--transparent);
+  background-color: var(--transparentSlate);
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -204,9 +206,12 @@ const capitalizeCity = (city) => {
 }
 
 /* TITLE STYLE */
-.profile-title {
-  font-size: 24px; /* Increase the font size for the profile title */
-  margin-bottom: 15px; /* Add some spacing below the title */
+.profile-title-card {
+  background-color: var(--primeGreen);
+  border-radius: 10px;
+  width: 200px;
+  margin: 10px auto;
+  padding: 5px;
 }
 
 .columns {

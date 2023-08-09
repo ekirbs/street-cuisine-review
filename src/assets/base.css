@@ -29,8 +29,10 @@
   --black: #000000;
   --white: #ffffff;
   --error: rgb(228, 46, 1);
-  --transparent: rgba(251, 251, 251, 0.50)
-;}
+  --transparent: rgba(251, 251, 251, 0.50);
+  --lessTransparentSlate: rgba(66, 66, 66, 0.75);
+  --transparentSlate: rgba(66, 66, 66, 0.50);
+}
 
 /* semantic color variables for this project */
 :root {

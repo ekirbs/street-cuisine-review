@@ -54,10 +54,10 @@
 
           <div class="navbar-dropdown">
             <RouterLink to="/posts" class="navbar-item"> Posts </RouterLink>
-            <RouterLink to="/feed" class="navbar-item"> Feed </RouterLink>
+            <!-- <RouterLink to="/feed" class="navbar-item"> Feed </RouterLink> -->
             <RouterLink to="/vendors" class="navbar-item"> Vendors </RouterLink>
             <a class="navbar-item"> About </a>
-            <a class="navbar-item"> Contact </a>
+            <!-- <a class="navbar-item"> Contact </a> -->
             <hr class="navbar-divider" />
             <RouterLink to="/test" class="navbar-item">Test</RouterLink>
           </div>
@@ -153,7 +153,7 @@ watch(
 );
 </script>
 
-<style>
+<style scoped>
 @import 'bulma/css/bulma.min.css';
 
 .navbar {
@@ -194,5 +194,9 @@ watch(
   min-height: 75px;
   min-width: 75px;
   margin: 0 5px;
+}
+
+a.navbar-link::after {
+  border-color: var(--primeSlate) !important;
 }
 </style>
