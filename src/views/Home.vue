@@ -7,6 +7,7 @@
       <p>Your one-stop shop to fine dining on the streets.</p>
       <h1 class="clock-time">Current Time: {{ currentTime }}</h1>
     </main> -->
+    <!-- <CitySelector></CitySelector> -->
     <Clock></Clock>
     <Map></Map>
     <Weather></Weather>
@@ -14,42 +15,48 @@
 </template>
 
 <script>
-import { Clock, Map, Weather } from "../components/homeComponents";
+import {
+  // CitySelector,
+  Clock,
+  Map,
+  Weather,
+} from '../components/homeComponents';
 
 export default {
-  name: "Home",
+  name: 'Home',
   components: {
+    // CitySelector,
     Clock,
     Map,
     Weather,
   },
-//   data() {
-//     return {
-//       currentTime: '',
-//       intervalId: null
-//     }
-//   },
-//   methods: {
-//     setCurrentTime() {
-//       const date = new Date();
-//       const formattedTime = date.toLocaleTimeString('en-US');
-//       this.currentTime = formattedTime;
-//     }
-//   },
-//   created() {
-//     this.setCurrentTime();
-//     this.intervalId = setInterval(() => {
-//       this.setCurrentTime();
-//     }, 1000);
-//   },
-//   beforeDestroy() {
-//     clearInterval(this.intervalId);
-//   },
+  //   data() {
+  //     return {
+  //       currentTime: '',
+  //       intervalId: null
+  //     }
+  //   },
+  //   methods: {
+  //     setCurrentTime() {
+  //       const date = new Date();
+  //       const formattedTime = date.toLocaleTimeString('en-US');
+  //       this.currentTime = formattedTime;
+  //     }
+  //   },
+  //   created() {
+  //     this.setCurrentTime();
+  //     this.intervalId = setInterval(() => {
+  //       this.setCurrentTime();
+  //     }, 1000);
+  //   },
+  //   beforeDestroy() {
+  //     clearInterval(this.intervalId);
+  //   },
 };
 </script>
 
 <style scoped>
-@import "bulma/css/bulma.min.css";
+@import 'bulma/css/bulma.min.css';
 
 .home-container {
   background-color: var(--transparentSlate);

@@ -51,7 +51,7 @@ import { useStore } from 'vuex';
 // vuex store
 const store = useStore();
 const currentUser = store.state.currentUser;
-console.log("currentUser.city:", currentUser.city);
+console.log('currentUser.city:', currentUser.city);
 // const currentCity = computed(() => currentUser.city);
 
 // const onCityChange = () => {
@@ -67,7 +67,7 @@ const cities = ['boston', 'toronto'];
 // api fetch
 const fetchVendorData = () => {
   const vendorsApiUrl = `${API_BASE_URL}/vendors/${currentUser.city}`;
-  console.log("in fetchVendorData currentUser.city:", currentUser.city);
+  console.log('in fetchVendorData currentUser.city:', currentUser.city);
 
   axios
     .get(vendorsApiUrl)
@@ -76,15 +76,15 @@ const fetchVendorData = () => {
       console.log('Vendor Data:', vendorData);
 
       data.value = Object.values(vendorData).map((vendor) => ({
-          name: vendor.name,
-          logo: vendor.images?.logo_small,
-          website: vendor.url,
-          phone: vendor.phone,
-          description: vendor.description,
-          payment_methods: vendor.payment_methods,
-          rating: vendor.rating,
-          identifier: vendor.identifier,
-        }));
+        name: vendor.name,
+        logo: vendor.images?.logo_small,
+        website: vendor.url,
+        phone: vendor.phone,
+        description: vendor.description,
+        payment_methods: vendor.payment_methods,
+        rating: vendor.rating,
+        identifier: vendor.identifier,
+      }));
 
       isLoading.value = false;
     })
@@ -97,15 +97,18 @@ const fetchVendorData = () => {
 // onMounted(onCityChange);
 onMounted(fetchVendorData);
 
-watch(() => currentUser.city, (newValue, oldValue) => {
-  if (newValue !==oldValue) {
-    isLoading.value = true;
-    fetchVendorData();
+watch(
+  () => currentUser.city,
+  (newValue, oldValue) => {
+    if (newValue !== oldValue) {
+      isLoading.value = true;
+      fetchVendorData();
+    }
   }
-});
+);
 
 const capitalizeCity = (city) => {
-  if(!city) return '';
+  if (!city) return '';
   return city.replace(/\b\w/g, (char) => char.toUpperCase());
 };
 </script>
