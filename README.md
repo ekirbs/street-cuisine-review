@@ -25,6 +25,31 @@ None.  Just visit the website and use!
 
 Certain website features, like the post system, require the user to create an account or log in.
 
+### Home Page
+
+#### Map
+The map will show icons for all the vendors marked on the map.  Click on a vendor icon to see basic information about the vendor, and click on the "Go To Vendor" button to go to the indivual vendor page, which will display further information about the vendor.
+
+#### 5-Day Weather Forecast
+The weather section will display weather forecast information for the chosen city.
+
+### Profile Page
+
+#### Profile
+Logged in users can view their profile information including their display name, email address, and chosen city.  The display name can be changed at any time.
+
+#### Posts
+Logged-in users can view their previously made posts.  All posts can be edited or deleted.  Upvote and comment systems in development.
+
+### Vendor Page
+
+#### City Selector
+Choose a city to view.  User's choice will be saved as long as they are on the site, and all components will work off of their current choice.  The default choice is Boston.
+
+#### Vendor List
+A comprehensive list of all vendors in the database for a given city.  The number of vendors is subject to change/growth.
+
+
     ```md
     ![alt text](assets/images/screenshot.png)
     ```
