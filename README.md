@@ -23,7 +23,7 @@ None.  Just visit the website and use!
 
 ## Usage
 
-Certain website features, like the post system, require the user to create an account or log in.
+Certain website features, like the post system, require the user to create an account or log in.  The website has a built in page-history navigation feature allowing the user to go back a page, forward a page, or redirect back to the homepage for convenience.  The current time is displayed on the homepage.
 
 ### Home Page
 
