@@ -1,12 +1,14 @@
 # Street Cuisine Review
 
+IN DEVELOPMENT
+
 ## Description
 
-THIS PROJECT IS CURRENTLY ON HOLD DUE TO A BLOCKED API
+"Your one-stop shop to fine dining on the streets."
 
 This is the Street Cuisine Review!  This app is designed to give users a resource to locate and choose street food vendors in chosen cities.  
 
-Link: [Street Cuisine Review](https://ekirbs.github.io/street-cuisine-review/ 'Your one-stop shop to fine dining on the streets.')
+Repository: [Street Cuisine Review](https://ekirbs.github.io/street-cuisine-review/ 'Your one-stop shop to fine dining on the streets.')
 
 ## Table of Contents
 
@@ -21,9 +23,7 @@ None.  Just visit the website and use!
 
 ## Usage
 
-Certain website features require the user to create an account or log in.
-
-To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
+Certain website features, like the post system, require the user to create an account or log in.
 
     ```md
     ![alt text](assets/images/screenshot.png)
@@ -31,24 +31,18 @@ To add a screenshot, create an `assets/images` folder in your repository and upl
 
 ![Tutorial GIF.](./public/assets/images/tutor-gif.gif)
 
-[![Tutorial](./assets/images/sql-tutor-img.png)](https://dropTutorialVideoHereInGihub.com/0000000.mp4))
+[![Tutorial](./assets/images/sql-tutor-img.png)](https://dropTutorialVideoHereInGihub.com/0000000.mp4)
 
 ## Credits
 
-A special thanks to the 3 programmers who helped me in the develop the original idea:
-X
-X
-X
-
-If you used any third-party assets that require attribution, list the creators with links to their primary web presence in this section.
-
-If you followed tutorials, include links to those here as well.
-
-Link: [Web Dev Simplified](https://www.youtube.com/@WebDevSimplified 'The Youtube channel for Web Dev Simplified.')
+A special thanks to the 3 programmers who helped me in the development of the original idea:
+- [Thomas Madden](https://github.com/ogwalrus 'The github page for Thomas Madden.')
+- [Nick Stallard](https://github.com/nickj13 'The github page for Nick Stallard.')
+- [Mekael Abdullah](https://github.com/mekael18 'The github page for Mekael Abdullah.')
 
 ## License
 
-MIT license. Please refer to [https://choosealicense.com/](https://choosealicense.com/).
+MIT license. Please refer to [https://choosealicense.com/licenses/mit/](https://choosealicense.com/licenses/mit/).
 
 ## Badges
 
@@ -56,8 +50,15 @@ MIT license. Please refer to [https://choosealicense.com/](https://choosealicens
 
 ## Features
 
-Google Map
-StreetFoodApp API (...NOW BLOCKED)
+| Title            | Description | Image                                                                   |
+| :--------------- | :---------: | ----------------------------------------------------------------------: |
+| Vendors     | A comprehensive list of all known street vendors in the chosen city. | <img src="./public/assets/images/music-player-img.jpg" width="50%">     |
+| Weather Forecast | A weather forecast app using the OpenWeatherMap API.  Search for any city and get a 5-day forecast of the weather.  The information given is subject to change. | <img src="./public/assets/images/weather-forecast-img.jpg" width="50%"> |
+| Google Maps      | A Google global map app using the Google Maps API.  The map display is fully touch-capable.  Search for any location and the map will pinpoint the location.  The functionality is subject to change. | <img src="./public/assets/images/google-maps-img.jpg" width="50%">      |
+<br>
+
+- Google Maps
+StreetFoodApi
 OpenWeatherApi
 Post/Comment System
 

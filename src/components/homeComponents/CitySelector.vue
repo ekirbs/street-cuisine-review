@@ -48,4 +48,8 @@ const handleCityChange = () => {
 
 <style scoped>
 @import 'bulma/css/bulma.min.css';
+
+.select {
+  margin-bottom: 20px;
+}
 </style>
