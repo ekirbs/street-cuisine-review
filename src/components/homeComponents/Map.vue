@@ -50,7 +50,8 @@ import { faTruck } from '@fortawesome/free-solid-svg-icons';
 
 // vuex store
 const store = useStore();
-const selectedCity = ref(store.state.currentUser.city);
+// const selectedCity = ref(store.state.currentUser.city);
+const selectedCity = computed(() => store.state.currentUser.city);
 
 // refs
 const center = ref({ lat: 42.3601, lng: -71.0589 });
@@ -124,9 +125,6 @@ const fetchVendorsData = async () => {
   }
 };
 
-// fetch vendors data init
-onMounted(fetchVendorsData);
-
 const getVendorIcon = (vendor) => {
   if (vendor.logo && vendor.logo !== '' && isValidURL(vendor.logo)) {
     return { ...vendorLogoIcon.value, url: vendor.logo };
@@ -145,7 +143,10 @@ const isValidURL = (url) => {
   }
 };
 
-watch(selectedCity, fetchVendorsData);
+// watch(selectedCity, fetchVendorsData);
+watch(selectedCity, (newCity) => {
+  fetchVendorsData(newCity);
+});
 
 // update map center and zoom on data change
 watch(vendorsData, () => {
@@ -160,6 +161,12 @@ watch(vendorsData, () => {
 
     vendorLogoIcon.value.url = '';
   }
+});
+
+// fetch vendors data init
+// onMounted(fetchVendorsData);
+onMounted(() => {
+  fetchVendorsData(selectedCity.value);
 });
 
 const mapOptions = computed(() => ({

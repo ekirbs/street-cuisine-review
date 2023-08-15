@@ -5,9 +5,8 @@
     </div> -->
     <!-- <main class="home-main">
       <p>Your one-stop shop to fine dining on the streets.</p>
-      <h1 class="clock-time">Current Time: {{ currentTime }}</h1>
     </main> -->
-    <!-- <CitySelector></CitySelector> -->
+    <CitySelector></CitySelector>
     <Clock></Clock>
     <Map></Map>
     <Weather></Weather>
@@ -16,7 +15,7 @@
 
 <script>
 import {
-  // CitySelector,
+  CitySelector,
   Clock,
   Map,
   Weather,
@@ -25,33 +24,11 @@ import {
 export default {
   name: 'Home',
   components: {
-    // CitySelector,
+    CitySelector,
     Clock,
     Map,
     Weather,
   },
-  //   data() {
-  //     return {
-  //       currentTime: '',
-  //       intervalId: null
-  //     }
-  //   },
-  //   methods: {
-  //     setCurrentTime() {
-  //       const date = new Date();
-  //       const formattedTime = date.toLocaleTimeString('en-US');
-  //       this.currentTime = formattedTime;
-  //     }
-  //   },
-  //   created() {
-  //     this.setCurrentTime();
-  //     this.intervalId = setInterval(() => {
-  //       this.setCurrentTime();
-  //     }, 1000);
-  //   },
-  //   beforeDestroy() {
-  //     clearInterval(this.intervalId);
-  //   },
 };
 </script>
 
@@ -85,11 +62,5 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-} */
-
-/* .clock-time {
-  background-color: var(--primeOffWhite);
-  padding: 10px;
-  border-radius: 10px;
 } */
 </style>

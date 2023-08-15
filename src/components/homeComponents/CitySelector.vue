@@ -1,6 +1,6 @@
 <template>
   <div class="select">
-    <select v-model="currentUser.city" @change="handleCityChange">
+    <select v-model="selectedCity" @change="handleCityChange">
     <!-- <select v-model="selectedCity" @change="handleCityChange"> -->
       <option v-for="city in cities" :key="city" :value="city">
         {{ capitalizeCity(city) }}

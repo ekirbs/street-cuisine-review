@@ -55,14 +55,16 @@ console.log('currentUser.city:', currentUser.city);
 // const currentCity = computed(() => currentUser.city);
 
 // const onCityChange = () => {
-//   store.commit('setCity', currentCity);
-//   fetchVendorData();
-// };
-
-// refs
-const isLoading = ref(true);
-const data = ref([]);
-const cities = ['boston', 'toronto'];
+  //   store.commit('setCity', currentCity);
+  //   fetchVendorData();
+  // };
+  
+  // refs
+  const isLoading = ref(true);
+  const data = ref([]);
+  const cities = ['boston', 'toronto'];
+  const selectedCity = ref(store.state.currentUser.city);
+  console.log('selectedCity:', selectedCity.value);
 
 // api fetch
 const fetchVendorData = () => {

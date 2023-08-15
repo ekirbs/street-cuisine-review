@@ -57,7 +57,8 @@ import { useStore } from 'vuex';
 
 // vuex store
 const store = useStore();
-const city = ref(store.state.currentUser.city);
+// const city = ref(store.state.currentUser.city);
+const city = computed(() => store.state.currentUser.city);
 console.log('city:', city.value);
 
 const weatherData = ref(null);
@@ -113,10 +114,17 @@ const getWeatherIconUrl = (iconCode) => {
 
 watch(weatherData, (newData) => {
   console.log('weatherData updated:', newData);
-})
+});
+
+watch(city, (newCity) => {
+  fetchWeatherData(newCity);
+});
 
 // fetchWeatherData();
-onMounted(fetchWeatherData);
+// onMounted(fetchWeatherData);
+onMounted(() => {
+  fetchWeatherData(city.value);
+});
 </script>
 
 <style scoped>
