@@ -30,7 +30,7 @@ import { useStore } from 'vuex';
 // vuex store & refs
 const store = useStore();
 const selectedCity = ref(store.state.currentUser.city);
-const cities = ['boston', 'toronto'];
+const cities = ['boston', 'toronto', 'ithaca', 'tallahassee', 'eugene', 'vancouver'];
 
 watch(selectedCity, (newValue) => {
   store.commit('setCity', newValue);
